@@ -9721,7 +9721,7 @@ char *tempnam(const char *, const char *);
 
 
 #pragma config STVREN = OFF
-#pragma config LVP = OFF
+#pragma config LVP = ON
 #pragma config XINST = OFF
 
 
@@ -9759,6 +9759,7 @@ char *tempnam(const char *, const char *);
 
 
 void config();
+void adc_config(void);
 # 12 "main.c" 2
 
 # 1 "./i2c_display.h" 1
@@ -9901,20 +9902,39 @@ void USART2WriteInt(int16_t val, int8_t field_length);
 # 14 "main.c" 2
 
 char str_i[8];
+int rez_adc=0;
+
+void read_Uout(void);
 
 void main(void) {
     config();
+    adc_config();
+
+     TRISAbits.RA0=1;
+    ANSELAbits.ANSA0=1;
+    TRISA=0Xff;
+    ANSELA=0Xff;
+    ADCON0=0b00000001;
+    ADCON1=0b10000000;
+
+    ADCON2=0b00111110;
+
+    ADCON2bits.ADFM=0;
 
 
     while(1)
-    {
         for(int i=0;i<256;i++)
         {
-            TXREG=i;
+            ADCON0=0b00000011;
+            _delay((unsigned long)((100)*(64000000/4000000.0)));
+            ADCON0bits.GO=1;
+            while(ADCON0bits.GO==1){};
+            rez_adc=ADRESH;
+
+            TXREG=rez_adc;
             _delay((unsigned long)((100)*(64000000/4000.0)));
-            Lcd_Set_Cursor(1,1);
-            sprintf(str_i, "%u", i);
-            Lcd_Write_String(str_i);
+
+
         }
 
 
@@ -9923,6 +9943,19 @@ void main(void) {
 
 
     }
+
+
+
+void read_Uout(void)
+{
+    ADCON0=0b00000000;
+    _delay((unsigned long)((100)*(64000000/4000000.0)));
+    ADCON0bits.GO=1;
+    while(ADCON0bits.GO==1){};
+    rez_adc=ADRESH;
+
+
+
 
 
 }

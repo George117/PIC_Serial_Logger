@@ -56,4 +56,18 @@ void config()
 }
 
 
+void adc_config(void)//setari initiale ale ADC-ului
+{
+    TRISAbits.RA0=1;
+    ANSELAbits.ANSA0=1;
+      TRISA=0Xff;
+     ANSELA=0Xff;
+    ADCON0=0b00000001;
+    ADCON1=0b10000000;
+    
+    ADCON2=0b00111110;
+    
+    ADCON2bits.ADFM=0;
+    
 
+}

@@ -145,6 +145,56 @@ Version 4.0 HI-TECH Software Intermediate Code
 "50
 [; ;./i2c_display.h: 50: void Lcd_Set_Cursor(char a, char b);
 [v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"8071 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8071:     struct {
+[s S395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S395 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"8081
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8081:     struct {
+[s S396 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S396 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"8070
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8070: typedef union {
+[u S394 `S395 1 `S396 1 ]
+[n S394 . . . ]
+"8092
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8092: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
+[v _TRISAbits `VS394 ~T0 @X0 0 e@3986 ]
+"58
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 58:     struct {
+[s S7 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S7 . ANSA0 ANSA1 ANSA2 ANSA3 . ANSA5 ]
+"57
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 57: typedef union {
+[u S6 `S7 1 ]
+[n S6 . . ]
+"67
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 67: extern volatile ANSELAbits_t ANSELAbits __attribute__((address(0xF38)));
+[v _ANSELAbits `VS6 ~T0 @X0 0 e@3896 ]
+"13611
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13611: extern volatile unsigned char ADCON0 __attribute__((address(0xFC2)));
+[v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
+"13543
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13543: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
+"13472
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13472: extern volatile unsigned char ADCON2 __attribute__((address(0xFC0)));
+[v _ADCON2 `Vuc ~T0 @X0 0 e@4032 ]
+"13478
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13478:     struct {
+[s S641 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S641 . ADCS ACQT . ADFM ]
+"13484
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13484:     struct {
+[s S642 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S642 . ADCS0 ADCS1 ADCS2 ACQT0 ACQT1 ACQT2 ]
+"13477
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13477: typedef union {
+[u S640 `S641 1 `S642 1 ]
+[n S640 . . . ]
+"13493
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13493: extern volatile ADCON2bits_t ADCON2bits __attribute__((address(0xFC0)));
+[v _ADCON2bits `VS640 ~T0 @X0 0 e@4032 ]
 "54 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 54: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -941,7 +991,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46
 [p x STVREN = OFF ]
 "47
-[p x LVP = OFF ]
+[p x LVP = ON ]
 "48
 [p x XINST = OFF ]
 "51
@@ -1105,4 +1155,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "56
 [; ;config.c: 56: }
 [e :UE 854 ]
+}
+"59
+[; ;config.c: 59: void adc_config(void)
+[v _adc_config `(v ~T0 @X0 1 ef ]
+"60
+[; ;config.c: 60: {
+{
+[e :U _adc_config ]
+[f ]
+"61
+[; ;config.c: 61:     TRISAbits.RA0=1;
+[e = . . _TRISAbits 1 0 -> -> 1 `i `uc ]
+"62
+[; ;config.c: 62:     ANSELAbits.ANSA0=1;
+[e = . . _ANSELAbits 0 0 -> -> 1 `i `uc ]
+"63
+[; ;config.c: 63:       TRISA=0Xff;
+[e = _TRISA -> -> 255 `i `uc ]
+"64
+[; ;config.c: 64:      ANSELA=0Xff;
+[e = _ANSELA -> -> 255 `i `uc ]
+"65
+[; ;config.c: 65:     ADCON0=0b00000001;
+[e = _ADCON0 -> -> 1 `i `uc ]
+"66
+[; ;config.c: 66:     ADCON1=0b10000000;
+[e = _ADCON1 -> -> 128 `i `uc ]
+"68
+[; ;config.c: 68:     ADCON2=0b00111110;
+[e = _ADCON2 -> -> 62 `i `uc ]
+"70
+[; ;config.c: 70:     ADCON2bits.ADFM=0;
+[e = . . _ADCON2bits 0 3 -> -> 0 `i `uc ]
+"73
+[; ;config.c: 73: }
+[e :UE 855 ]
 }

@@ -9584,7 +9584,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 #pragma config STVREN = OFF
-#pragma config LVP = OFF
+#pragma config LVP = ON
 #pragma config XINST = OFF
 
 
@@ -9799,4 +9799,21 @@ void config()
     Cursor_Off();
     Lcd_Set_Cursor(1,1);
     _delay((unsigned long)((100)*(64000000/4000.0)));
+}
+
+
+void adc_config(void)
+{
+    TRISAbits.RA0=1;
+    ANSELAbits.ANSA0=1;
+      TRISA=0Xff;
+     ANSELA=0Xff;
+    ADCON0=0b00000001;
+    ADCON1=0b10000000;
+
+    ADCON2=0b00111110;
+
+    ADCON2bits.ADFM=0;
+
+
 }
