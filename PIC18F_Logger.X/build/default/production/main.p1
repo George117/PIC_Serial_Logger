@@ -3,19 +3,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3 ./config.h
 [; ;./config.h: 3: void config();
 [v _config `(v ~T0 @X0 0 e? ]
-"50 ./i2c_display.h
-[; ;./i2c_display.h: 50: void Lcd_Set_Cursor(char a, char b);
-[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
-"53
-[; ;./i2c_display.h: 53: void Lcd_Write_String(char *a);
-[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"11215 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 11215: extern volatile unsigned char TXREG __attribute__((address(0xFAD)));
+[v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
 [v F5956 `(v ~T0 @X0 1 tf1`ul ]
 "183 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18.h
 [v __delay `JF5956 ~T0 @X0 0 e ]
 [p i __delay ]
-"44 ./usart.h
-[; ;./usart.h: 44: void USARTWriteString(const char *str);
-[v _USARTWriteString `(v ~T0 @X0 0 ef1`*Cuc ]
+"50 ./i2c_display.h
+[; ;./i2c_display.h: 50: void Lcd_Set_Cursor(char a, char b);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"115 D:\Program Files\Microchip\xc8\v2.05\pic\include\c99\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"53 ./i2c_display.h
+[; ;./i2c_display.h: 53: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "54 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 54: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -860,44 +862,67 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40
 [; ;./usart.h: 40: volatile int8_t UQEnd;
 [v _UQEnd `Vc ~T0 @X0 1 e ]
+"15 main.c
+[; ;main.c: 15: char str_i[8];
+[v _str_i `uc ~T0 @X0 -> 8 `i e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"16 main.c
-[; ;main.c: 16: void main(void) {
+"17
+[; ;main.c: 17: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"17
-[; ;main.c: 17:     config();
+"18
+[; ;main.c: 18:     config();
 [e ( _config ..  ]
-"20
-[; ;main.c: 20:     while(1)
-[e :U 856 ]
 "21
-[; ;main.c: 21:     { Lcd_Set_Cursor(1,1);
-{
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;main.c: 21:     while(1)
+[e :U 858 ]
 "22
-[; ;main.c: 22:         Lcd_Write_String("Test1");
-[e ( _Lcd_Write_String (1 :s 1C ]
+[; ;main.c: 22:     {
+{
 "23
-[; ;main.c: 23:         _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 23:         for(int i=0;i<256;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 256 `i 860  ]
+[e $U 861  ]
+[e :U 860 ]
 "24
-[; ;main.c: 24:         USARTWriteString("Hello\r\n");
-[e ( _USARTWriteString (1 :s 2C ]
+[; ;main.c: 24:         {
+{
 "25
-[; ;main.c: 25:         _delay((unsigned long)((100)*(64000000/4000.0)));
+[; ;main.c: 25:             TXREG=i;
+[e = _TXREG -> _i `uc ]
+"26
+[; ;main.c: 26:             _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"27
+[; ;main.c: 27:             Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "28
-[; ;main.c: 28:     }
+[; ;main.c: 28:             sprintf(str_i, "%u", i);
+[e ( _sprintf (1 , (. , &U _str_i :s 1C _i ]
+"29
+[; ;main.c: 29:             Lcd_Write_String(str_i);
+[e ( _Lcd_Write_String (1 &U _str_i ]
+"30
+[; ;main.c: 30:         }
 }
-[e :U 855 ]
-[e $U 856  ]
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 256 `i 860  ]
+[e :U 861 ]
+}
+"37
+[; ;main.c: 37:     }
+}
 [e :U 857 ]
-"31
-[; ;main.c: 31: }
-[e :UE 854 ]
+[e $U 858  ]
+[e :U 859 ]
+"40
+[; ;main.c: 40: }
+[e :UE 856 ]
 }
-[a 1C 84 101 115 116 49 0 ]
-[a 2C 72 101 108 108 111 13 10 0 ]
+[p f _sprintf 8389632 ]
+[a 1C 37 117 0 ]

@@ -52,7 +52,6 @@ void config()
     Lcd_Clear();
     Cursor_Off();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("Test");
     __delay_ms(100);
 }
 

@@ -145,9 +145,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "50
 [; ;./i2c_display.h: 50: void Lcd_Set_Cursor(char a, char b);
 [v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
-"53
-[; ;./i2c_display.h: 53: void Lcd_Write_String(char *a);
-[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "54 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 54: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -1103,13 +1100,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;config.c: 54:     Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "55
-[; ;config.c: 55:     Lcd_Write_String("Test");
-[e ( _Lcd_Write_String (1 :s 1C ]
-"56
-[; ;config.c: 56:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[; ;config.c: 55:     _delay((unsigned long)((100)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"57
-[; ;config.c: 57: }
+"56
+[; ;config.c: 56: }
 [e :UE 854 ]
 }
-[a 1C 84 101 115 116 0 ]

@@ -9798,6 +9798,5 @@ void config()
     Lcd_Clear();
     Cursor_Off();
     Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("Test");
     _delay((unsigned long)((100)*(64000000/4000.0)));
 }
