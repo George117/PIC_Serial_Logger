@@ -9,7 +9,6 @@
 #include <xc.h>
 #include <pic18f46k22.h>
 #include "bit_settings.h"
-#include "i2c_display.h"
 #include "usart.h"
 
 void config()
@@ -42,31 +41,19 @@ void config()
     LATD=0X00;
     LATE=0X00;
     
-    TRISCbits.TRISC3=1;//i2c
-    TRISCbits.TRISC4=1;//i2c
-    I2C_Master_Init(100000);
     __delay_ms(100);
-    USARTInit(19200);
+    USARTInit(115200);
     
-    Lcd_Init();
-    Lcd_Clear();
-    Cursor_Off();
-    Lcd_Set_Cursor(1,1);
-    __delay_ms(100);
 }
 
 
 void adc_config(void)//setari initiale ale ADC-ului
 {
+   
     TRISAbits.RA0=1;
     ANSELAbits.ANSA0=1;
-      TRISA=0Xff;
-     ANSELA=0Xff;
-    ADCON0=0b00000001;
     ADCON1=0b10000000;
-    
     ADCON2=0b00111110;
-    
     ADCON2bits.ADFM=0;
     
 

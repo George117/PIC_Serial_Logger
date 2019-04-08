@@ -1,4 +1,4 @@
-# 1 "usart.c"
+# 1 "data_out.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,113 +6,15 @@
 # 1 "<built-in>" 2
 # 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "usart.c" 2
-# 26 "usart.c"
-# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 1 3
-
-
-
-# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\musl_xc8.h" 1 3
-# 4 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
-# 22 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 3
-# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 135 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long uintptr_t;
-# 150 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long intptr_t;
-# 166 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef signed char int8_t;
-
-
-
-
-typedef short int16_t;
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-typedef long int32_t;
+# 1 "data_out.c" 2
 
 
 
 
 
-typedef long long int64_t;
-# 196 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long intmax_t;
 
 
 
-
-
-typedef unsigned char uint8_t;
-
-
-
-
-typedef unsigned short uint16_t;
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-typedef unsigned long uint32_t;
-
-
-
-
-
-typedef unsigned long long uint64_t;
-# 237 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef unsigned long long uintmax_t;
-# 22 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
-
-
-typedef int8_t int_fast8_t;
-
-typedef int64_t int_fast64_t;
-
-
-typedef int8_t int_least8_t;
-typedef int16_t int_least16_t;
-
-typedef int24_t int_least24_t;
-
-typedef int32_t int_least32_t;
-
-typedef int64_t int_least64_t;
-
-
-typedef uint8_t uint_fast8_t;
-
-typedef uint64_t uint_fast64_t;
-
-
-typedef uint8_t uint_least8_t;
-typedef uint16_t uint_least16_t;
-
-typedef uint24_t uint_least24_t;
-
-typedef uint32_t uint_least32_t;
-
-typedef uint64_t uint_least64_t;
-# 155 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 3
-# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/stdint.h" 1 3
-typedef int32_t int_fast16_t;
-typedef int32_t int_fast32_t;
-typedef uint32_t uint_fast16_t;
-typedef uint32_t uint_fast32_t;
-# 155 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
-# 27 "usart.c" 2
 # 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -126,7 +28,17 @@ extern double __fpnormalize(double);
 
 
 # 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 1 3
-# 10 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 3
+
+
+
+# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\musl_xc8.h" 1 3
+# 4 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 2 3
+
+
+
+
+
+
 # 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\features.h" 1 3
 # 10 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 2 3
 # 21 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 3
@@ -135,6 +47,10 @@ extern double __fpnormalize(double);
 typedef long int wchar_t;
 # 127 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned size_t;
+# 176 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef __int24 int24_t;
+# 212 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef __uint24 uint24_t;
 # 21 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdlib.h" 2 3
 
 
@@ -9637,9 +9553,96 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 28 "usart.c" 2
+# 9 "data_out.c" 2
 
+# 1 "./data_out.h" 1
+# 33 "./data_out.h"
 # 1 "./usart.h" 1
+# 28 "./usart.h"
+# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 1 3
+# 22 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 3
+# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 135 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uintptr_t;
+# 150 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long intptr_t;
+# 166 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef signed char int8_t;
+
+
+
+
+typedef short int16_t;
+# 181 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long int32_t;
+
+
+
+
+
+typedef long long int64_t;
+# 196 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long intmax_t;
+
+
+
+
+
+typedef unsigned char uint8_t;
+
+
+
+
+typedef unsigned short uint16_t;
+# 217 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long uint32_t;
+
+
+
+
+
+typedef unsigned long long uint64_t;
+# 237 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef unsigned long long uintmax_t;
+# 22 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
+
+
+typedef int8_t int_fast8_t;
+
+typedef int64_t int_fast64_t;
+
+
+typedef int8_t int_least8_t;
+typedef int16_t int_least16_t;
+
+typedef int24_t int_least24_t;
+
+typedef int32_t int_least32_t;
+
+typedef int64_t int_least64_t;
+
+
+typedef uint8_t uint_fast8_t;
+
+typedef uint64_t uint_fast64_t;
+
+
+typedef uint8_t uint_least8_t;
+typedef uint16_t uint_least16_t;
+
+typedef uint24_t uint_least24_t;
+
+typedef uint32_t uint_least32_t;
+
+typedef uint64_t uint_least64_t;
+# 155 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 3
+# 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/stdint.h" 1 3
+typedef int32_t int_fast16_t;
+typedef int32_t int_fast32_t;
+typedef uint32_t uint_fast16_t;
+typedef uint32_t uint_fast32_t;
+# 155 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 2 3
+# 29 "./usart.h" 2
 # 38 "./usart.h"
 volatile char URBuff[64];
 volatile int8_t UQFront;
@@ -9663,314 +9666,13 @@ void USART2WriteChar(char ch);
 void USART2WriteString(const char *str);
 void USART2GotoNewLine();
 void USART2WriteInt(int16_t val, int8_t field_length);
-# 30 "usart.c" 2
+# 33 "./data_out.h" 2
 
-void USARTInit(uint16_t baud_rate)
-{
 
-    UQFront=UQEnd=-1;
+void send_data(void);
+# 10 "data_out.c" 2
 
 
-    switch(baud_rate)
-    {
-     case 9600:
-        SPBRG1=103;
-        break;
-     case 19200:
-        SPBRG1=207;
-        break;
-     case 57600:
-        SPBRG1=68;
-        break;
-     case 115200:
-        SPBRG1=34;
-        break;
-    }
-
-    TXSTA1bits.TX9=0;
-    TXSTA1bits.TXEN=1;
-    TXSTA1bits.SYNC=0;
-    TXSTA1bits.BRGH=1;
-
-
-    RCSTA1bits.SPEN=1;
-    RCSTA1bits.RX9=0;
-    RCSTA1bits.CREN=1;
-    RCSTA1bits.ADDEN=0;
-
-
-
-    PIE1bits.RC1IE=1;
-    PEIE=1;
-
-    (INTCONbits.GIE = 1);
-}
-
-void USARTWriteChar(char ch)
-{
-  while(!PIR1bits.TXIF);
-
-  TXREG=ch;
-}
-
-void USARTWriteRaw(char ch)
-{
-  while(!PIR1bits.TXIF);
-
-  TXREG=ch;
-}
-
-void USARTWriteString(const char *str)
-{
-  while(*str!='\0')
-  {
-      USARTWriteChar(*str);
-      str++;
-  }
-}
-
-void USARTWriteLine(const char *str)
-{
-    USARTWriteChar('\r');
-    USARTWriteChar('\n');
-
-    USARTWriteString(str);
-}
-
-void USARTHandleRxInt()
-{
- if(PORTBbits.RB1==1)
-    PORTBbits.RB1=0;
-  else
-    PORTBbits.RB1=1;
-
-
-    char data=RCREG;
-
-
-    if(((UQEnd==64 -1) && UQFront==0) || ((UQEnd+1)==UQFront))
-    {
-
- UQFront++;
- if(UQFront==64) UQFront=0;
-    }
-
-    if(UQEnd==64 -1)
-        UQEnd=0;
-    else
- UQEnd++;
-
-    URBuff[UQEnd]=data;
-
-    if(UQFront==-1) UQFront=0;
-
-}
-
-char USARTReadData()
-{
-    char data;
-
-
-    if(UQFront==-1)
- return 0;
-
-    data=URBuff[UQFront];
-
-    if(UQFront==UQEnd)
-    {
-
-
- UQFront=UQEnd=-1;
-    }
-    else
-    {
- UQFront++;
-
- if(UQFront==64)
-            UQFront=0;
-    }
-
-    return data;
-}
-
-uint8_t USARTDataAvailable()
-{
-    if(UQFront==-1) return 0;
-    if(UQFront<UQEnd)
- return(UQEnd-UQFront+1);
-    else if(UQFront>UQEnd)
- return (64 -UQFront+UQEnd+1);
-    else
- return 1;
-}
-
-void USARTWriteInt(int16_t val, int8_t field_length)
-{
-    char str[5]={0,0,0,0,0};
-    int8_t i=4,j=0;
-
-
-    if(val<0)
-    {
-        USARTWriteChar('-');
-        val=val*-1;
-    }
-    else
-    {
-        USARTWriteChar(' ');
-    }
-
-    if(val==0 && field_length<1)
-    {
-        USARTWriteChar('0');
-        return;
-    }
-    while(val)
-    {
-        str[i]=val%10;
-        val=val/10;
-        i--;
-    }
-
-    if(field_length==-1)
-        while(str[j]==0) j++;
-    else
-        j=5-field_length;
-
-
-    for(i=j;i<5;i++)
-    {
-        USARTWriteChar('0'+str[i]);
-    }
-}
-
-void USARTGotoNewLine()
-{
-    USARTWriteChar('\r');
-    USARTWriteChar('\n');
-}
-
-void USARTReadBuffer(char *buff,uint16_t len)
-{
- uint16_t i;
- for(i=0;i<len;i++)
- {
-  buff[i]=USARTReadData();
- }
-}
-void USARTFlushBuffer()
-{
- while(USARTDataAvailable()>0)
- {
-  USARTReadData();
- }
-}
-
-
-
-void USART2Init(uint16_t baud_rate)
-{
-
-    UQFront=UQEnd=-1;
-    TRISDbits.RD7=0;
-    TRISDbits.RD6=0;
-
-    BAUDCON2bits.BRG162=1;
-    switch(baud_rate)
-    {
-     case 2400:
-        SPBRGH2= 0X1A;
-        SPBRG2=0X0A;
-        break;
-     case 19200:
-        SPBRG2=64;
-        break;
-     case 28800:
-        SPBRG2=42;
-        break;
-     case 33600:
-        SPBRG2=36;
-        break;
-    }
-
-    TXSTA2bits.TX9=0;
-    TXSTA2bits.TXEN=1;
-    TXSTA2bits.SYNC=0;
-    TXSTA2bits.BRGH=1;
-
-
-    RCSTA2bits.SPEN=1;
-    RCSTA2bits.RX9=0;
-    RCSTA2bits.CREN=1;
-    RCSTA2bits.ADDEN=0;
-
-
-
-    PIE3bits.RC2IE=0;
-
-
-    (INTCONbits.GIE = 1);
-}
-
-void USART2WriteChar(char ch)
-{
-  while(!PIR3bits.TX2IF);
-
-  TXREG2=ch;
-}
-
-void USART2WriteString(const char *str)
-{
-  while(*str!='\0')
-  {
-      USART2WriteChar(*str);
-      str++;
-  }
-}
-
-void USART2GotoNewLine()
-{
-    USART2WriteChar('\r');
-    USART2WriteChar('\n');
-}
-
-
-void USART2WriteInt(int16_t val, int8_t field_length)
-{
-    char str[5]={0,0,0,0,0};
-    int8_t i=4,j=0;
-
-
-    if(val<0)
-    {
-        USART2WriteChar('-');
-        val=val*-1;
-    }
-    else
-    {
-        USART2WriteChar(' ');
-    }
-
-    if(val==0 && field_length<1)
-    {
-        USART2WriteChar('0');
-        return;
-    }
-    while(val)
-    {
-        str[i]=val%10;
-        val=val/10;
-        i--;
-    }
-
-    if(field_length==-1)
-        while(str[j]==0) j++;
-    else
-        j=5-field_length;
-
-
-    for(i=j;i<5;i++)
-    {
-        USART2WriteChar('0'+str[i]);
-    }
+void send_data(void) {
+    USARTWriteRaw(0x69);
 }

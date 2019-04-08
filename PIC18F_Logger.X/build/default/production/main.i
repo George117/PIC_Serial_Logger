@@ -9762,34 +9762,8 @@ void config();
 void adc_config(void);
 # 12 "main.c" 2
 
-# 1 "./i2c_display.h" 1
-# 36 "./i2c_display.h"
-void I2C_Master_Init(const unsigned long c);
-void I2C_Master_Wait();
-void I2C_Master_Start();
-void I2C_Master_RepeatedStart();
-void I2C_Master_Stop();
-void I2C_Master_Write(unsigned d);
-void I2C_Write_Display(unsigned d);
-
-unsigned short I2C_Master_Read(unsigned short a);
-
-
-void Lcd_Port(char data);
-void Lcd_Cmd(char a);
-void Lcd_Clear();
-void Lcd_Set_Cursor(char a, char b);
-void Lcd_Init();
-void Lcd_Write_Char(char a);
-void Lcd_Write_String(char *a);
-void Lcd_Shift_Right();
-void Lcd_Shift_Left();
-void Cursor_On();
-void Cursor_Off();
-void Cursor_Left();
-void Cursor_Right();
-# 13 "main.c" 2
-
+# 1 "./data_out.h" 1
+# 33 "./data_out.h"
 # 1 "./usart.h" 1
 # 28 "./usart.h"
 # 1 "D:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdint.h" 1 3
@@ -9892,14 +9866,19 @@ uint8_t USARTDataAvailable();
 void USARTGotoNewLine();
 void USARTReadBuffer(char *buff,uint16_t len);
 void USARTFlushBuffer();
-
+void USARTWriteRaw(char ch);
 
 void USART2Init(uint16_t baud_rate);
 void USART2WriteChar(char ch);
 void USART2WriteString(const char *str);
 void USART2GotoNewLine();
 void USART2WriteInt(int16_t val, int8_t field_length);
-# 14 "main.c" 2
+# 33 "./data_out.h" 2
+
+
+void send_data(void);
+# 13 "main.c" 2
+
 
 char str_i[8];
 int rez_adc=0;
@@ -9910,33 +9889,27 @@ void main(void) {
     config();
     adc_config();
 
-     TRISAbits.RA0=1;
-    ANSELAbits.ANSA0=1;
-    TRISA=0Xff;
-    ANSELA=0Xff;
-    ADCON0=0b00000001;
-    ADCON1=0b10000000;
 
-    ADCON2=0b00111110;
-
-    ADCON2bits.ADFM=0;
 
 
     while(1)
-        for(int i=0;i<256;i++)
-        {
-            ADCON0=0b00000011;
-            _delay((unsigned long)((100)*(64000000/4000000.0)));
-            ADCON0bits.GO=1;
-            while(ADCON0bits.GO==1){};
-            rez_adc=ADRESH;
+    {
 
-            TXREG=rez_adc;
-            _delay((unsigned long)((100)*(64000000/4000.0)));
+        for(int i=0;i<10;i++)
+        {
+
+
+          read_Uout();
+          send_data();
+
 
 
         }
 
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    LATDbits.LATD1=!LATDbits.LATD1;
+    }
 
 
 
@@ -9948,14 +9921,10 @@ void main(void) {
 
 void read_Uout(void)
 {
-    ADCON0=0b00000000;
+    ADCON0=0b00000011;
     _delay((unsigned long)((100)*(64000000/4000000.0)));
     ADCON0bits.GO=1;
     while(ADCON0bits.GO==1){};
     rez_adc=ADRESH;
-
-
-
-
 
 }

@@ -42,11 +42,11 @@ void USARTInit(uint16_t baud_rate)
      case 19200:
         SPBRG1=207;
         break;
-     case 28800:
-        SPBRG1=42;
+     case 57600:
+        SPBRG1=68;
         break;
-     case 33600:
-        SPBRG1=36;
+     case 115200:
+        SPBRG1=34;
         break;
     }
     //TXSTA
@@ -70,6 +70,13 @@ void USARTInit(uint16_t baud_rate)
 }
 
 void USARTWriteChar(char ch)
+{
+  while(!PIR1bits.TXIF);
+
+  TXREG=ch;
+}
+
+void USARTWriteRaw(char ch)
 {
   while(!PIR1bits.TXIF);
 

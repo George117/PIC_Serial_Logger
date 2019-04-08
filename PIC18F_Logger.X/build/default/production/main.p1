@@ -6,67 +6,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4
 [; ;./config.h: 4: void adc_config(void);
 [v _adc_config `(v ~T0 @X0 0 ef ]
-"8071 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8071:     struct {
-[s S395 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S395 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"8081
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8081:     struct {
-[s S396 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S396 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-"8070
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8070: typedef union {
-[u S394 `S395 1 `S396 1 ]
-[n S394 . . . ]
-"8092
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8092: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
-[v _TRISAbits `VS394 ~T0 @X0 0 e@3986 ]
-"58
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 58:     struct {
-[s S7 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S7 . ANSA0 ANSA1 ANSA2 ANSA3 . ANSA5 ]
-"57
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 57: typedef union {
-[u S6 `S7 1 ]
-[n S6 . . ]
-"67
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 67: extern volatile ANSELAbits_t ANSELAbits __attribute__((address(0xF38)));
-[v _ANSELAbits `VS6 ~T0 @X0 0 e@3896 ]
-"8060
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 8060: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"52
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 52: extern volatile unsigned char ANSELA __attribute__((address(0xF38)));
-[v _ANSELA `Vuc ~T0 @X0 0 e@3896 ]
-"13611
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13611: extern volatile unsigned char ADCON0 __attribute__((address(0xFC2)));
-[v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
-"13543
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13543: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
-"13472
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13472: extern volatile unsigned char ADCON2 __attribute__((address(0xFC0)));
-[v _ADCON2 `Vuc ~T0 @X0 0 e@4032 ]
-"13478
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13478:     struct {
-[s S641 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S641 . ADCS ACQT . ADFM ]
-"13484
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13484:     struct {
-[s S642 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S642 . ADCS0 ADCS1 ADCS2 ACQT0 ACQT1 ACQT2 ]
-"13477
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13477: typedef union {
-[u S640 `S641 1 `S642 1 ]
-[n S640 . . . ]
-"13493
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13493: extern volatile ADCON2bits_t ADCON2bits __attribute__((address(0xFC0)));
-[v _ADCON2bits `VS640 ~T0 @X0 0 e@4032 ]
+"18 main.c
+[; ;main.c: 18: void read_Uout(void);
+[v _read_Uout `(v ~T0 @X0 0 ef ]
+"35 ./data_out.h
+[; ;./data_out.h: 35: void send_data(void);
+[v _send_data `(v ~T0 @X0 0 ef ]
 [v F5956 `(v ~T0 @X0 1 tf1`ul ]
 "183 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18.h
 [v __delay `JF5956 ~T0 @X0 0 e ]
 [p i __delay ]
-"13617 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
+"7902 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 7902:     struct {
+[s S389 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S389 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"7912
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 7912:     struct {
+[s S390 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S390 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"7901
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 7901: typedef union {
+[u S388 `S389 1 `S390 1 ]
+[n S388 . . . ]
+"7923
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 7923: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS388 ~T0 @X0 0 e@3980 ]
+"13611
+[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13611: extern volatile unsigned char ADCON0 __attribute__((address(0xFC2)));
+[v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
+"13617
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13617:     struct {
 [s S648 :1 `uc 1 :1 `uc 1 ]
 [n S648 . . GO_NOT_DONE ]
@@ -108,9 +76,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13763
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 13763: extern volatile unsigned char ADRESH __attribute__((address(0xFC4)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
-"11215
-[; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 11215: extern volatile unsigned char TXREG __attribute__((address(0xFAD)));
-[v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
 "54 D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h
 [; ;D:\Program Files\Microchip\xc8\v2.05\pic\include\pic18f46k22.h: 54: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -977,115 +942,82 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;main.c: 22:     adc_config();
 [e ( _adc_config ..  ]
-"24
-[; ;main.c: 24:      TRISAbits.RA0=1;
-[e = . . _TRISAbits 1 0 -> -> 1 `i `uc ]
-"25
-[; ;main.c: 25:     ANSELAbits.ANSA0=1;
-[e = . . _ANSELAbits 0 0 -> -> 1 `i `uc ]
-"26
-[; ;main.c: 26:     TRISA=0Xff;
-[e = _TRISA -> -> 255 `i `uc ]
 "27
-[; ;main.c: 27:     ANSELA=0Xff;
-[e = _ANSELA -> -> 255 `i `uc ]
-"28
-[; ;main.c: 28:     ADCON0=0b00000001;
-[e = _ADCON0 -> -> 1 `i `uc ]
-"29
-[; ;main.c: 29:     ADCON1=0b10000000;
-[e = _ADCON1 -> -> 128 `i `uc ]
-"31
-[; ;main.c: 31:     ADCON2=0b00111110;
-[e = _ADCON2 -> -> 62 `i `uc ]
-"33
-[; ;main.c: 33:     ADCON2bits.ADFM=0;
-[e = . . _ADCON2bits 0 3 -> -> 0 `i `uc ]
-"36
-[; ;main.c: 36:     while(1)
+[; ;main.c: 27:     while(1)
 [e :U 858 ]
-"37
-[; ;main.c: 37:         for(int i=0;i<256;i++)
+"28
+[; ;main.c: 28:     {
+{
+"30
+[; ;main.c: 30:         for(int i=0;i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 256 `i 860  ]
+[e $ < _i -> 10 `i 860  ]
 [e $U 861  ]
 [e :U 860 ]
-"38
-[; ;main.c: 38:         {
+"31
+[; ;main.c: 31:         {
 {
+"34
+[; ;main.c: 34:           read_Uout();
+[e ( _read_Uout ..  ]
+"35
+[; ;main.c: 35:           send_data();
+[e ( _send_data ..  ]
 "39
-[; ;main.c: 39:             ADCON0=0b00000011;
-[e = _ADCON0 -> -> 3 `i `uc ]
-"40
-[; ;main.c: 40:             _delay((unsigned long)((100)*(64000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"41
-[; ;main.c: 41:             ADCON0bits.GO=1;
-[e = . . _ADCON0bits 2 1 -> -> 1 `i `uc ]
-"42
-[; ;main.c: 42:             while(ADCON0bits.GO==1){};
-[e $U 863  ]
-[e :U 864 ]
-{
-}
-[e :U 863 ]
-[e $ == -> . . _ADCON0bits 2 1 `i -> 1 `i 864  ]
-[e :U 865 ]
-"43
-[; ;main.c: 43:             rez_adc=ADRESH;
-[e = _rez_adc -> _ADRESH `i ]
-"45
-[; ;main.c: 45:             TXREG=rez_adc;
-[e = _TXREG -> _rez_adc `uc ]
-"46
-[; ;main.c: 46:             _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"49
-[; ;main.c: 49:         }
+[; ;main.c: 39:         }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 256 `i 860  ]
+[e $ < _i -> 10 `i 860  ]
 [e :U 861 ]
+}
+"41
+[; ;main.c: 41:         _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"43
+[; ;main.c: 43:     LATDbits.LATD1=!LATDbits.LATD1;
+[e = . . _LATDbits 0 1 -> -> ! != -> . . _LATDbits 0 1 `i -> 0 `i `i `uc ]
+"44
+[; ;main.c: 44:     }
 }
 [e :U 857 ]
 [e $U 858  ]
 [e :U 859 ]
-"56
-[; ;main.c: 56:     }
+"50
+[; ;main.c: 50:     }
 [e :UE 856 ]
 }
-"60
-[; ;main.c: 60: void read_Uout(void)
+"54
+[; ;main.c: 54: void read_Uout(void)
 [v _read_Uout `(v ~T0 @X0 1 ef ]
-"61
-[; ;main.c: 61: {
+"55
+[; ;main.c: 55: {
 {
 [e :U _read_Uout ]
 [f ]
-"62
-[; ;main.c: 62:     ADCON0=0b00000000;
-[e = _ADCON0 -> -> 0 `i `uc ]
-"63
-[; ;main.c: 63:     _delay((unsigned long)((100)*(64000000/4000000.0)));
+"56
+[; ;main.c: 56:     ADCON0=0b00000011;
+[e = _ADCON0 -> -> 3 `i `uc ]
+"57
+[; ;main.c: 57:     _delay((unsigned long)((100)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"64
-[; ;main.c: 64:     ADCON0bits.GO=1;
+"58
+[; ;main.c: 58:     ADCON0bits.GO=1;
 [e = . . _ADCON0bits 2 1 -> -> 1 `i `uc ]
-"65
-[; ;main.c: 65:     while(ADCON0bits.GO==1){};
-[e $U 867  ]
-[e :U 868 ]
+"59
+[; ;main.c: 59:     while(ADCON0bits.GO==1){};
+[e $U 864  ]
+[e :U 865 ]
 {
 }
-[e :U 867 ]
-[e $ == -> . . _ADCON0bits 2 1 `i -> 1 `i 868  ]
-[e :U 869 ]
-"66
-[; ;main.c: 66:     rez_adc=ADRESH;
+[e :U 864 ]
+[e $ == -> . . _ADCON0bits 2 1 `i -> 1 `i 865  ]
+[e :U 866 ]
+"60
+[; ;main.c: 60:     rez_adc=ADRESH;
 [e = _rez_adc -> _ADRESH `i ]
-"72
-[; ;main.c: 72: }
-[e :UE 866 ]
+"62
+[; ;main.c: 62: }
+[e :UE 863 ]
 }

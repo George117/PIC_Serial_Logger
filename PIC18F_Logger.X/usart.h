@@ -50,7 +50,7 @@ uint8_t USARTDataAvailable();
 void USARTGotoNewLine();
 void USARTReadBuffer(char *buff,uint16_t len);
 void USARTFlushBuffer();
-
+void USARTWriteRaw(char ch);
 /////////////////////2////////////////////////////
 void USART2Init(uint16_t baud_rate);
 void USART2WriteChar(char ch);
