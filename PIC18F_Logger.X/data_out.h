@@ -28,8 +28,12 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-
+#include <stdint.h>
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include "usart.h"
 
+
+void write_raw(char ch);
 void send_data(void);
+void init_data_out(int baud_rate);
+void init_timebase(void);
+void timebase_interrupt(void);

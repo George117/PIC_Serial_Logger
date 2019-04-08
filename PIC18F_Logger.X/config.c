@@ -9,7 +9,8 @@
 #include <xc.h>
 #include <pic18f46k22.h>
 #include "bit_settings.h"
-#include "usart.h"
+#include "config.h"
+
 
 void config()
 {
@@ -41,13 +42,16 @@ void config()
     LATD=0X00;
     LATE=0X00;
     
-    __delay_ms(100);
-    USARTInit(115200);
+
     
+    
+  
+    init_data_out(115200);
+    init_timebase();
 }
 
 
-void adc_config(void)//setari initiale ale ADC-ului
+void adc_config(void)
 {
    
     TRISAbits.RA0=1;
