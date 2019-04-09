@@ -9842,7 +9842,7 @@ while(1)
 {
 read_Uout();
 _delay((unsigned long)((10)*(64000000/4000.0)));
-out_buffer[1]=out_buffer[1]+1;
+
 }
 }
 

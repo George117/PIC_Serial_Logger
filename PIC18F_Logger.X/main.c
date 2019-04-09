@@ -28,7 +28,7 @@ void main(void) {
     {
         read_Uout();
         __delay_ms(10);
-        out_buffer[1]=out_buffer[1]+1;
+   
     }
  }
     

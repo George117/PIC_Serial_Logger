@@ -9696,13 +9696,14 @@ void init_data_out(int baud_rate);
 void init_timebase(void);
 void timebase_interrupt(void);
 
-# 12 "data_out.c"
+# 19 "data_out.c"
 char out_buffer[10]={0,0,0,0,0,0,0,0,0,0};
 char int_counter=0;
 
+char counter_max = 0;
 
 void send_data(void) {
-for(char i=0;i<10;i++)
+for(char i=0;i<2;i++)
 {
 write_raw(out_buffer[i]);
 }
@@ -9721,10 +9722,38 @@ if(PIR1bits.TMR1IF==1)
 {
 PIR1bits.TMR1IF=0;
 T1CONbits.TMR1ON=0;
+
+if(100 == 100)
+{
+
+}
+
+switch(100){
+case 100:
 TMR1L=0;
 TMR1H=61;
+counter_max=4;
+break;
 
-if(int_counter==4)
+case 25:
+TMR1L=0;
+TMR1H=60;
+counter_max=1;
+break;
+
+case 10:
+TMR1L=128;
+TMR1H=177;
+counter_max=1;
+break;
+default:
+TMR1L=0;
+TMR1H=61;
+counter_max=4;
+break;
+}
+
+if(int_counter==counter_max)
 {
 LATDbits.LATD1=!LATDbits.LATD1;
 send_data();

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Mon Apr 08 20:58:17 2019
+                                                                                               Tue Apr 09 20:28:03 2019
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1 
      1                           	processor	18F46K22
@@ -120,30 +120,30 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
    106                           ; #config settings
    107  0000                     
    108                           	psect	cinit
-   109  0001E8                     __pcinit:
+   109  000224                     __pcinit:
    110                           	opt callstack 0
-   111  0001E8                     start_initialization:
+   111  000224                     start_initialization:
    112                           	opt callstack 0
-   113  0001E8                     __initialization:
+   113  000224                     __initialization:
    114                           	opt callstack 0
    115                           
-   116                           ; Clear objects allocated to COMRAM (21 bytes)
-   117  0001E8  EE00  F001         	lfsr	0,__pbssCOMRAM
-   118  0001EC  0E15               	movlw	21
-   119  0001EE                     clear_0:
-   120  0001EE  6AEE               	clrf	postinc0,c
-   121  0001F0  06E8               	decf	wreg,f,c
-   122  0001F2  E1FD               	bnz	clear_0
-   123  0001F4                     end_of_initialization:
+   116                           ; Clear objects allocated to COMRAM (22 bytes)
+   117  000224  EE00  F001         	lfsr	0,__pbssCOMRAM
+   118  000228  0E16               	movlw	22
+   119  00022A                     clear_0:
+   120  00022A  6AEE               	clrf	postinc0,c
+   121  00022C  06E8               	decf	wreg,f,c
+   122  00022E  E1FD               	bnz	clear_0
+   123  000230                     end_of_initialization:
    124                           	opt callstack 0
-   125  0001F4                     __end_of__initialization:
+   125  000230                     __end_of__initialization:
    126                           	opt callstack 0
-   127  0001F4  9020               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
-   128  0001F6  9220               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
-   129  0001F8  0E00               	movlw	low (__Lmediumconst shr (0+16))
-   130  0001FA  6EF8               	movwf	tblptru,c
-   131  0001FC  0100               	movlb	0
-   132  0001FE  EFD4  F000         	goto	_main	;jump to C main() function
+   127  000230  9022               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+   128  000232  9222               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   129  000234  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   130  000236  6EF8               	movwf	tblptru,c
+   131  000238  0100               	movlb	0
+   132  00023A  EF04  F001         	goto	_main	;jump to C main() function
    133                           
    134                           	psect	bssCOMRAM
    135  000001                     __pbssCOMRAM:
@@ -157,1047 +157,1115 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
    143  000013                     _rez_adc:
    144                           	opt callstack 0
    145  000013                     	ds	2
-   146  000015                     _int_counter:
+   146  000015                     _counter_max:
    147                           	opt callstack 0
    148  000015                     	ds	1
-   149                           
-   150                           	psect	cstackCOMRAM
-   151  000016                     __pcstackCOMRAM:
-   152                           	opt callstack 0
-   153  000016                     write_raw@ch:
-   154                           	opt callstack 0
-   155                           
-   156                           ; 1 bytes @ 0x0
-   157  000016                     	ds	1
-   158  000017                     send_data@i:
-   159                           	opt callstack 0
-   160                           
-   161                           ; 1 bytes @ 0x1
-   162  000017                     	ds	1
-   163  000018                     ??_timebase_interrupt:
-   164                           
-   165                           ; 1 bytes @ 0x2
-   166  000018                     	ds	1
-   167  000019                     ??_timer:
-   168                           
-   169                           ; 1 bytes @ 0x3
-   170  000019                     	ds	2
-   171  00001B                     init_data_out@baud_rate:
-   172                           	opt callstack 0
-   173                           
-   174                           ; 2 bytes @ 0x5
-   175  00001B                     	ds	2
-   176  00001D                     ??_init_data_out:
-   177                           
-   178                           ; 1 bytes @ 0x7
-   179  00001D                     	ds	2
-   180  00001F                     ??_main:
-   181                           
-   182                           ; 1 bytes @ 0x9
-   183  00001F                     	ds	1
+   149  000016                     _int_counter:
+   150                           	opt callstack 0
+   151  000016                     	ds	1
+   152                           
+   153                           	psect	cstackCOMRAM
+   154  000017                     __pcstackCOMRAM:
+   155                           	opt callstack 0
+   156  000017                     write_raw@ch:
+   157                           	opt callstack 0
+   158                           
+   159                           ; 1 bytes @ 0x0
+   160  000017                     	ds	1
+   161  000018                     send_data@i:
+   162                           	opt callstack 0
+   163                           
+   164                           ; 1 bytes @ 0x1
+   165  000018                     	ds	1
+   166  000019                     ??_timebase_interrupt:
+   167                           
+   168                           ; 1 bytes @ 0x2
+   169  000019                     	ds	2
+   170  00001B                     ??_timer:
+   171                           
+   172                           ; 1 bytes @ 0x4
+   173  00001B                     	ds	2
+   174  00001D                     init_data_out@baud_rate:
+   175                           	opt callstack 0
+   176                           
+   177                           ; 2 bytes @ 0x6
+   178  00001D                     	ds	2
+   179  00001F                     ??_init_data_out:
+   180                           
+   181                           ; 1 bytes @ 0x8
+   182  00001F                     	ds	2
+   183  000021                     ??_main:
    184                           
-   185 ;;
-   186 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
-   187 ;;
-   188 ;; *************** function _main *****************
-   189 ;; Defined at:
-   190 ;;		line 23 in file "main.c"
-   191 ;; Parameters:    Size  Location     Type
-   192 ;;		None
-   193 ;; Auto vars:     Size  Location     Type
-   194 ;;		None
-   195 ;; Return value:  Size  Location     Type
-   196 ;;                  1    wreg      void 
-   197 ;; Registers used:
-   198 ;;		wreg, status,2, status,0, cstack
-   199 ;; Tracked objects:
-   200 ;;		On entry : 0/0
-   201 ;;		On exit  : 0/0
-   202 ;;		Unchanged: 0/0
-   203 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   185                           ; 1 bytes @ 0xA
+   186  000021                     	ds	1
+   187                           
+   188 ;;
+   189 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   190 ;;
+   191 ;; *************** function _main *****************
+   192 ;; Defined at:
+   193 ;;		line 23 in file "main.c"
+   194 ;; Parameters:    Size  Location     Type
+   195 ;;		None
+   196 ;; Auto vars:     Size  Location     Type
+   197 ;;		None
+   198 ;; Return value:  Size  Location     Type
+   199 ;;                  1    wreg      void 
+   200 ;; Registers used:
+   201 ;;		wreg, status,2, status,0, cstack
+   202 ;; Tracked objects:
+   203 ;;		On entry : 0/0
+   204 ;;		On exit  : 0/0
+   205 ;;		Unchanged: 0/0
+   206 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   204 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   207 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   205 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   208 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   206 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+   209 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   207 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+   210 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   208 ;;Total ram usage:        1 bytes
-   209 ;; Hardware stack levels required when called:    6
-   210 ;; This function calls:
-   211 ;;		_adc_config
-   212 ;;		_config
-   213 ;;		_read_Uout
-   214 ;; This function is called by:
-   215 ;;		Startup code after reset
-   216 ;; This function uses a non-reentrant model
-   217 ;;
-   218                           
-   219                           	psect	text0
-   220  0001A8                     __ptext0:
-   221                           	opt callstack 0
-   222  0001A8                     _main:
-   223                           	opt callstack 25
-   224                           
-   225                           ;main.c: 24: config();
-   226                           
-   227                           ;incstack = 0
-   228  0001A8  EC4C  F000         	call	_config	;wreg free
+   211 ;;Total ram usage:        1 bytes
+   212 ;; Hardware stack levels required when called:    6
+   213 ;; This function calls:
+   214 ;;		_adc_config
+   215 ;;		_config
+   216 ;;		_read_Uout
+   217 ;; This function is called by:
+   218 ;;		Startup code after reset
+   219 ;; This function uses a non-reentrant model
+   220 ;;
+   221                           
+   222                           	psect	text0
+   223  000208                     __ptext0:
+   224                           	opt callstack 0
+   225  000208                     _main:
+   226                           	opt callstack 25
+   227                           
+   228                           ;main.c: 24: config();
    229                           
-   230                           ;main.c: 25: adc_config();
-   231  0001AC  EC01  F001         	call	_adc_config	;wreg free
-   232  0001B0                     l1241:
-   233                           
-   234                           ;main.c: 28: {;main.c: 29: read_Uout();
-   235  0001B0  ECC2  F000         	call	_read_Uout	;wreg free
+   230                           ;incstack = 0
+   231  000208  EC8B  F000         	call	_config	;wreg free
+   232                           
+   233                           ;main.c: 25: adc_config();
+   234  00020C  EC1F  F001         	call	_adc_config	;wreg free
+   235  000210                     l1266:
    236                           
-   237                           ;main.c: 30: _delay((unsigned long)((10)*(64000000/4000.0)));
-   238  0001B4  0ED0               	movlw	208
-   239  0001B6  6E1F               	movwf	??_main& (0+255),c
-   240  0001B8  0ECA               	movlw	202
-   241  0001BA                     u157:
-   242  0001BA  2EE8               	decfsz	wreg,f,c
-   243  0001BC  D7FE               	bra	u157
-   244  0001BE  2E1F               	decfsz	??_main& (0+255),f,c
-   245  0001C0  D7FC               	bra	u157
-   246                           
-   247                           ;main.c: 31: out_buffer[1]=out_buffer[1]+1;
-   248  0001C2  2802               	incf	_out_buffer+1,w,c
-   249  0001C4  6E02               	movwf	_out_buffer+1,c
-   250  0001C6  D7F4               	goto	l1241
-   251  0001C8                     __end_of_main:
-   252                           	opt callstack 0
-   253                           
-   254 ;; *************** function _read_Uout *****************
-   255 ;; Defined at:
-   256 ;;		line 37 in file "main.c"
-   257 ;; Parameters:    Size  Location     Type
-   258 ;;		None
-   259 ;; Auto vars:     Size  Location     Type
-   260 ;;		None
-   261 ;; Return value:  Size  Location     Type
-   262 ;;                  1    wreg      void 
-   263 ;; Registers used:
-   264 ;;		wreg, status,2
-   265 ;; Tracked objects:
-   266 ;;		On entry : 0/0
-   267 ;;		On exit  : 0/0
-   268 ;;		Unchanged: 0/0
-   269 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   237                           ;main.c: 28: {;main.c: 29: read_Uout();
+   238  000210  ECE2  F000         	call	_read_Uout	;wreg free
+   239                           
+   240                           ;main.c: 30: _delay((unsigned long)((10)*(64000000/4000.0)));
+   241  000214  0ED0               	movlw	208
+   242  000216  6E21               	movwf	??_main& (0+255),c
+   243  000218  0ECA               	movlw	202
+   244  00021A                     u157:
+   245  00021A  2EE8               	decfsz	wreg,f,c
+   246  00021C  D7FE               	bra	u157
+   247  00021E  2E21               	decfsz	??_main& (0+255),f,c
+   248  000220  D7FC               	bra	u157
+   249  000222  D7F6               	goto	l1266
+   250  000224                     __end_of_main:
+   251                           	opt callstack 0
+   252                           
+   253 ;; *************** function _read_Uout *****************
+   254 ;; Defined at:
+   255 ;;		line 37 in file "main.c"
+   256 ;; Parameters:    Size  Location     Type
+   257 ;;		None
+   258 ;; Auto vars:     Size  Location     Type
+   259 ;;		None
+   260 ;; Return value:  Size  Location     Type
+   261 ;;                  1    wreg      void 
+   262 ;; Registers used:
+   263 ;;		wreg, status,2
+   264 ;; Tracked objects:
+   265 ;;		On entry : 0/0
+   266 ;;		On exit  : 0/0
+   267 ;;		Unchanged: 0/0
+   268 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   270 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   269 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   271 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   270 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   272 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   271 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   273 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   272 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   274 ;;Total ram usage:        0 bytes
-   275 ;; Hardware stack levels used:    1
-   276 ;; Hardware stack levels required when called:    4
-   277 ;; This function calls:
-   278 ;;		Nothing
-   279 ;; This function is called by:
-   280 ;;		_main
-   281 ;; This function uses a non-reentrant model
-   282 ;;
-   283                           
-   284                           	psect	text1
-   285  000184                     __ptext1:
-   286                           	opt callstack 0
-   287  000184                     _read_Uout:
-   288                           	opt callstack 26
-   289                           
-   290                           ;main.c: 39: ADCON0=0b00000011;
-   291                           
-   292                           ;incstack = 0
-   293  000184  0E03               	movlw	3
-   294  000186  6EC2               	movwf	4034,c	;volatile
-   295                           
-   296                           ;main.c: 40: _delay((unsigned long)((100)*(64000000/4000000.0)));
-   297  000188  0EE4               	movlw	228
-   298  00018A                     u167:
-   299  00018A  D000               	nop2	
-   300  00018C  D000               	nop2	
-   301  00018E  2EE8               	decfsz	wreg,f,c
-   302  000190  D7FC               	bra	u167
-   303  000192  D000               	nop2	
-   304  000194  D000               	nop2	
-   305                           
-   306                           ;main.c: 41: ADCON0bits.GO=1;
-   307  000196  82C2               	bsf	4034,1,c	;volatile
-   308  000198                     l99:
-   309  000198  B2C2               	btfsc	4034,1,c	;volatile
-   310  00019A  D7FE               	goto	l99
-   311                           
-   312                           ;main.c: 43: rez_adc=ADRESH;
-   313  00019C  CFC4 F013          	movff	4036,_rez_adc	;volatile
-   314  0001A0  6A14               	clrf	_rez_adc+1,c
-   315                           
-   316                           ;main.c: 44: out_buffer[0]=rez_adc;
-   317  0001A2  C013  F001         	movff	_rez_adc,_out_buffer
-   318  0001A6  0012               	return		;funcret
-   319  0001A8                     __end_of_read_Uout:
-   320                           	opt callstack 0
-   321                           
-   322 ;; *************** function _config *****************
-   323 ;; Defined at:
-   324 ;;		line 15 in file "config.c"
-   325 ;; Parameters:    Size  Location     Type
-   326 ;;		None
-   327 ;; Auto vars:     Size  Location     Type
-   328 ;;		None
-   329 ;; Return value:  Size  Location     Type
-   330 ;;                  1    wreg      void 
-   331 ;; Registers used:
-   332 ;;		wreg, status,2, status,0, cstack
-   333 ;; Tracked objects:
-   334 ;;		On entry : 0/0
-   335 ;;		On exit  : 0/0
-   336 ;;		Unchanged: 0/0
-   337 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   273 ;;Total ram usage:        0 bytes
+   274 ;; Hardware stack levels used:    1
+   275 ;; Hardware stack levels required when called:    4
+   276 ;; This function calls:
+   277 ;;		Nothing
+   278 ;; This function is called by:
+   279 ;;		_main
+   280 ;; This function uses a non-reentrant model
+   281 ;;
+   282                           
+   283                           	psect	text1
+   284  0001C4                     __ptext1:
+   285                           	opt callstack 0
+   286  0001C4                     _read_Uout:
+   287                           	opt callstack 26
+   288                           
+   289                           ;main.c: 39: ADCON0=0b00000011;
+   290                           
+   291                           ;incstack = 0
+   292  0001C4  0E03               	movlw	3
+   293  0001C6  6EC2               	movwf	4034,c	;volatile
+   294                           
+   295                           ;main.c: 40: _delay((unsigned long)((100)*(64000000/4000000.0)));
+   296  0001C8  0EE4               	movlw	228
+   297  0001CA                     u167:
+   298  0001CA  D000               	nop2	
+   299  0001CC  D000               	nop2	
+   300  0001CE  2EE8               	decfsz	wreg,f,c
+   301  0001D0  D7FC               	bra	u167
+   302  0001D2  D000               	nop2	
+   303  0001D4  D000               	nop2	
+   304                           
+   305                           ;main.c: 41: ADCON0bits.GO=1;
+   306  0001D6  82C2               	bsf	4034,1,c	;volatile
+   307  0001D8                     l99:
+   308  0001D8  B2C2               	btfsc	4034,1,c	;volatile
+   309  0001DA  D7FE               	goto	l99
+   310                           
+   311                           ;main.c: 43: rez_adc=ADRESH;
+   312  0001DC  CFC4 F013          	movff	4036,_rez_adc	;volatile
+   313  0001E0  6A14               	clrf	_rez_adc+1,c
+   314                           
+   315                           ;main.c: 44: out_buffer[0]=rez_adc;
+   316  0001E2  C013  F001         	movff	_rez_adc,_out_buffer
+   317  0001E6  0012               	return		;funcret
+   318  0001E8                     __end_of_read_Uout:
+   319                           	opt callstack 0
+   320                           
+   321 ;; *************** function _config *****************
+   322 ;; Defined at:
+   323 ;;		line 15 in file "config.c"
+   324 ;; Parameters:    Size  Location     Type
+   325 ;;		None
+   326 ;; Auto vars:     Size  Location     Type
+   327 ;;		None
+   328 ;; Return value:  Size  Location     Type
+   329 ;;                  1    wreg      void 
+   330 ;; Registers used:
+   331 ;;		wreg, status,2, status,0, cstack
+   332 ;; Tracked objects:
+   333 ;;		On entry : 0/0
+   334 ;;		On exit  : 0/0
+   335 ;;		Unchanged: 0/0
+   336 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   338 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   337 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   339 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   338 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   340 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   339 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   341 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   340 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   342 ;;Total ram usage:        0 bytes
-   343 ;; Hardware stack levels used:    1
-   344 ;; Hardware stack levels required when called:    5
-   345 ;; This function calls:
-   346 ;;		_init_data_out
-   347 ;;		_init_timebase
-   348 ;; This function is called by:
-   349 ;;		_main
-   350 ;; This function uses a non-reentrant model
-   351 ;;
-   352                           
-   353                           	psect	text2
-   354  000098                     __ptext2:
-   355                           	opt callstack 0
-   356  000098                     _config:
-   357                           	opt callstack 25
-   358                           
-   359                           ;config.c: 18: OSCCONbits.IRCF0=1;
-   360                           
-   361                           ;incstack = 0
-   362  000098  88D3               	bsf	4051,4,c	;volatile
-   363                           
-   364                           ;config.c: 19: OSCCONbits.IRCF1=1;
-   365  00009A  8AD3               	bsf	4051,5,c	;volatile
-   366                           
-   367                           ;config.c: 20: OSCCONbits.IRCF2=1;
-   368  00009C  8CD3               	bsf	4051,6,c	;volatile
-   369                           
-   370                           ;config.c: 21: OSCTUNEbits.PLLEN = 1;
-   371  00009E  8C9B               	bsf	3995,6,c	;volatile
-   372                           
-   373                           ;config.c: 22: INTCONbits.GIE=0;
-   374  0000A0  9EF2               	bcf	4082,7,c	;volatile
-   375                           
-   376                           ;config.c: 24: ANSELA=0X00;
-   377  0000A2  0E00               	movlw	0
-   378  0000A4  010F               	movlb	15	; () banked
-   379  0000A6  6F38               	movwf	56,b	;volatile
-   380                           
-   381                           ;config.c: 25: ANSELB=0X00;
-   382  0000A8  0E00               	movlw	0
-   383  0000AA  6F39               	movwf	57,b	;volatile
-   384                           
-   385                           ;config.c: 26: ANSELC=0X00;
-   386  0000AC  0E00               	movlw	0
-   387  0000AE  6F3A               	movwf	58,b	;volatile
-   388                           
-   389                           ;config.c: 27: ANSELD=0X00;
-   390  0000B0  0E00               	movlw	0
-   391  0000B2  6F3B               	movwf	59,b	;volatile
-   392                           
-   393                           ;config.c: 28: ANSELE=0X00;
-   394  0000B4  0E00               	movlw	0
-   395  0000B6  6F3C               	movwf	60,b	;volatile
-   396                           
-   397                           ;config.c: 29: TRISA=0X00;
-   398  0000B8  0E00               	movlw	0
-   399  0000BA  6E92               	movwf	3986,c	;volatile
-   400                           
-   401                           ;config.c: 30: TRISB=0X00;
-   402  0000BC  0E00               	movlw	0
-   403  0000BE  6E93               	movwf	3987,c	;volatile
-   404                           
-   405                           ;config.c: 31: TRISC=0X00;
-   406  0000C0  0E00               	movlw	0
-   407  0000C2  6E94               	movwf	3988,c	;volatile
-   408                           
-   409                           ;config.c: 32: TRISD=0X00;
-   410  0000C4  0E00               	movlw	0
-   411  0000C6  6E95               	movwf	3989,c	;volatile
-   412                           
-   413                           ;config.c: 33: TRISE=0X00;
-   414  0000C8  0E00               	movlw	0
-   415  0000CA  6E96               	movwf	3990,c	;volatile
-   416                           
-   417                           ;config.c: 34: PORTA=0X00;
-   418  0000CC  0E00               	movlw	0
-   419  0000CE  6E80               	movwf	3968,c	;volatile
-   420                           
-   421                           ;config.c: 35: PORTB=0X00;
-   422  0000D0  0E00               	movlw	0
-   423  0000D2  6E81               	movwf	3969,c	;volatile
-   424                           
-   425                           ;config.c: 36: PORTC=0X00;
-   426  0000D4  0E00               	movlw	0
-   427  0000D6  6E82               	movwf	3970,c	;volatile
-   428                           
-   429                           ;config.c: 37: PORTD=0X00;
-   430  0000D8  0E00               	movlw	0
-   431  0000DA  6E83               	movwf	3971,c	;volatile
-   432                           
-   433                           ;config.c: 38: PORTE=0X00;
-   434  0000DC  0E00               	movlw	0
-   435  0000DE  6E84               	movwf	3972,c	;volatile
-   436                           
-   437                           ;config.c: 39: LATA=0X00;
-   438  0000E0  0E00               	movlw	0
-   439  0000E2  6E89               	movwf	3977,c	;volatile
-   440                           
-   441                           ;config.c: 40: LATB=0X00;
-   442  0000E4  0E00               	movlw	0
-   443  0000E6  6E8A               	movwf	3978,c	;volatile
-   444                           
-   445                           ;config.c: 41: LATC=0X00;
-   446  0000E8  0E00               	movlw	0
-   447  0000EA  6E8B               	movwf	3979,c	;volatile
-   448                           
-   449                           ;config.c: 42: LATD=0X00;
-   450  0000EC  0E00               	movlw	0
-   451  0000EE  6E8C               	movwf	3980,c	;volatile
-   452                           
-   453                           ;config.c: 43: LATE=0X00;
-   454  0000F0  0E00               	movlw	0
-   455  0000F2  6E8D               	movwf	3981,c	;volatile
-   456                           
-   457                           ; BSR set to: 15
-   458                           ;config.c: 49: init_data_out(115200);
-   459  0000F4  0EC2               	movlw	194
-   460  0000F6  6E1C               	movwf	init_data_out@baud_rate+1,c
-   461  0000F8  0E00               	movlw	0
-   462  0000FA  6E1B               	movwf	init_data_out@baud_rate,c
-   463  0000FC  EC13  F000         	call	_init_data_out	;wreg free
-   464                           
-   465                           ;config.c: 50: init_timebase();
-   466  000100  EC83  F000         	call	_init_timebase	;wreg free
-   467  000104  0012               	return		;funcret
-   468  000106                     __end_of_config:
-   469                           	opt callstack 0
-   470                           
-   471 ;; *************** function _init_timebase *****************
-   472 ;; Defined at:
-   473 ;;		line 53 in file "data_out.c"
-   474 ;; Parameters:    Size  Location     Type
-   475 ;;		None
-   476 ;; Auto vars:     Size  Location     Type
-   477 ;;		None
-   478 ;; Return value:  Size  Location     Type
-   479 ;;                  1    wreg      void 
-   480 ;; Registers used:
-   481 ;;		wreg, status,2
-   482 ;; Tracked objects:
-   483 ;;		On entry : 0/0
-   484 ;;		On exit  : 0/0
-   485 ;;		Unchanged: 0/0
-   486 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   341 ;;Total ram usage:        0 bytes
+   342 ;; Hardware stack levels used:    1
+   343 ;; Hardware stack levels required when called:    5
+   344 ;; This function calls:
+   345 ;;		_init_data_out
+   346 ;;		_init_timebase
+   347 ;; This function is called by:
+   348 ;;		_main
+   349 ;; This function uses a non-reentrant model
+   350 ;;
+   351                           
+   352                           	psect	text2
+   353  000116                     __ptext2:
+   354                           	opt callstack 0
+   355  000116                     _config:
+   356                           	opt callstack 25
+   357                           
+   358                           ;config.c: 18: OSCCONbits.IRCF0=1;
+   359                           
+   360                           ;incstack = 0
+   361  000116  88D3               	bsf	4051,4,c	;volatile
+   362                           
+   363                           ;config.c: 19: OSCCONbits.IRCF1=1;
+   364  000118  8AD3               	bsf	4051,5,c	;volatile
+   365                           
+   366                           ;config.c: 20: OSCCONbits.IRCF2=1;
+   367  00011A  8CD3               	bsf	4051,6,c	;volatile
+   368                           
+   369                           ;config.c: 21: OSCTUNEbits.PLLEN = 1;
+   370  00011C  8C9B               	bsf	3995,6,c	;volatile
+   371                           
+   372                           ;config.c: 22: INTCONbits.GIE=0;
+   373  00011E  9EF2               	bcf	4082,7,c	;volatile
+   374                           
+   375                           ;config.c: 24: ANSELA=0X00;
+   376  000120  0E00               	movlw	0
+   377  000122  010F               	movlb	15	; () banked
+   378  000124  6F38               	movwf	56,b	;volatile
+   379                           
+   380                           ;config.c: 25: ANSELB=0X00;
+   381  000126  0E00               	movlw	0
+   382  000128  6F39               	movwf	57,b	;volatile
+   383                           
+   384                           ;config.c: 26: ANSELC=0X00;
+   385  00012A  0E00               	movlw	0
+   386  00012C  6F3A               	movwf	58,b	;volatile
+   387                           
+   388                           ;config.c: 27: ANSELD=0X00;
+   389  00012E  0E00               	movlw	0
+   390  000130  6F3B               	movwf	59,b	;volatile
+   391                           
+   392                           ;config.c: 28: ANSELE=0X00;
+   393  000132  0E00               	movlw	0
+   394  000134  6F3C               	movwf	60,b	;volatile
+   395                           
+   396                           ;config.c: 29: TRISA=0X00;
+   397  000136  0E00               	movlw	0
+   398  000138  6E92               	movwf	3986,c	;volatile
+   399                           
+   400                           ;config.c: 30: TRISB=0X00;
+   401  00013A  0E00               	movlw	0
+   402  00013C  6E93               	movwf	3987,c	;volatile
+   403                           
+   404                           ;config.c: 31: TRISC=0X00;
+   405  00013E  0E00               	movlw	0
+   406  000140  6E94               	movwf	3988,c	;volatile
+   407                           
+   408                           ;config.c: 32: TRISD=0X00;
+   409  000142  0E00               	movlw	0
+   410  000144  6E95               	movwf	3989,c	;volatile
+   411                           
+   412                           ;config.c: 33: TRISE=0X00;
+   413  000146  0E00               	movlw	0
+   414  000148  6E96               	movwf	3990,c	;volatile
+   415                           
+   416                           ;config.c: 34: PORTA=0X00;
+   417  00014A  0E00               	movlw	0
+   418  00014C  6E80               	movwf	3968,c	;volatile
+   419                           
+   420                           ;config.c: 35: PORTB=0X00;
+   421  00014E  0E00               	movlw	0
+   422  000150  6E81               	movwf	3969,c	;volatile
+   423                           
+   424                           ;config.c: 36: PORTC=0X00;
+   425  000152  0E00               	movlw	0
+   426  000154  6E82               	movwf	3970,c	;volatile
+   427                           
+   428                           ;config.c: 37: PORTD=0X00;
+   429  000156  0E00               	movlw	0
+   430  000158  6E83               	movwf	3971,c	;volatile
+   431                           
+   432                           ;config.c: 38: PORTE=0X00;
+   433  00015A  0E00               	movlw	0
+   434  00015C  6E84               	movwf	3972,c	;volatile
+   435                           
+   436                           ;config.c: 39: LATA=0X00;
+   437  00015E  0E00               	movlw	0
+   438  000160  6E89               	movwf	3977,c	;volatile
+   439                           
+   440                           ;config.c: 40: LATB=0X00;
+   441  000162  0E00               	movlw	0
+   442  000164  6E8A               	movwf	3978,c	;volatile
+   443                           
+   444                           ;config.c: 41: LATC=0X00;
+   445  000166  0E00               	movlw	0
+   446  000168  6E8B               	movwf	3979,c	;volatile
+   447                           
+   448                           ;config.c: 42: LATD=0X00;
+   449  00016A  0E00               	movlw	0
+   450  00016C  6E8C               	movwf	3980,c	;volatile
+   451                           
+   452                           ;config.c: 43: LATE=0X00;
+   453  00016E  0E00               	movlw	0
+   454  000170  6E8D               	movwf	3981,c	;volatile
+   455                           
+   456                           ; BSR set to: 15
+   457                           ;config.c: 49: init_data_out(115200);
+   458  000172  0EC2               	movlw	194
+   459  000174  6E1E               	movwf	init_data_out@baud_rate+1,c
+   460  000176  0E00               	movlw	0
+   461  000178  6E1D               	movwf	init_data_out@baud_rate,c
+   462  00017A  EC52  F000         	call	_init_data_out	;wreg free
+   463                           
+   464                           ;config.c: 50: init_timebase();
+   465  00017E  ECC2  F000         	call	_init_timebase	;wreg free
+   466  000182  0012               	return		;funcret
+   467  000184                     __end_of_config:
+   468                           	opt callstack 0
+   469                           
+   470 ;; *************** function _init_timebase *****************
+   471 ;; Defined at:
+   472 ;;		line 89 in file "data_out.c"
+   473 ;; Parameters:    Size  Location     Type
+   474 ;;		None
+   475 ;; Auto vars:     Size  Location     Type
+   476 ;;		None
+   477 ;; Return value:  Size  Location     Type
+   478 ;;                  1    wreg      void 
+   479 ;; Registers used:
+   480 ;;		wreg, status,2
+   481 ;; Tracked objects:
+   482 ;;		On entry : 0/0
+   483 ;;		On exit  : 0/0
+   484 ;;		Unchanged: 0/0
+   485 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   487 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   486 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   488 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   487 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   489 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   488 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   490 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   489 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   491 ;;Total ram usage:        0 bytes
-   492 ;; Hardware stack levels used:    1
-   493 ;; Hardware stack levels required when called:    4
-   494 ;; This function calls:
-   495 ;;		Nothing
-   496 ;; This function is called by:
-   497 ;;		_config
-   498 ;; This function uses a non-reentrant model
-   499 ;;
-   500                           
-   501                           	psect	text3
-   502  000106                     __ptext3:
-   503                           	opt callstack 0
-   504  000106                     _init_timebase:
-   505                           	opt callstack 25
-   506                           
-   507                           ;data_out.c: 55: TMR1L=0;
-   508                           
-   509                           ;incstack = 0
-   510  000106  0E00               	movlw	0
-   511  000108  6ECE               	movwf	4046,c	;volatile
-   512                           
-   513                           ;data_out.c: 56: TMR1H=61;
-   514  00010A  0E3D               	movlw	61
-   515  00010C  6ECF               	movwf	4047,c	;volatile
-   516                           
-   517                           ;data_out.c: 57: T1CONbits.RD16=0;
-   518  00010E  92CD               	bcf	4045,1,c	;volatile
-   519                           
-   520                           ;data_out.c: 58: T1CONbits.T1CKPS1=1;
-   521  000110  8ACD               	bsf	4045,5,c	;volatile
-   522                           
-   523                           ;data_out.c: 59: T1CONbits.T1CKPS0=1;
-   524  000112  88CD               	bsf	4045,4,c	;volatile
-   525                           
-   526                           ;data_out.c: 60: T1CONbits.TMR1CS=0;
-   527  000114  0E3F               	movlw	-193
-   528  000116  16CD               	andwf	4045,f,c	;volatile
-   529                           
-   530                           ;data_out.c: 61: T1CONbits.T1OSCEN=0;
-   531  000118  96CD               	bcf	4045,3,c	;volatile
-   532                           
-   533                           ;data_out.c: 62: T1CONbits.TMR1ON=0;
-   534  00011A  90CD               	bcf	4045,0,c	;volatile
-   535                           
-   536                           ;data_out.c: 63: T1CONbits.TMR1ON=1;
-   537  00011C  80CD               	bsf	4045,0,c	;volatile
-   538                           
-   539                           ;data_out.c: 67: INTCON=0x00;
-   540  00011E  0E00               	movlw	0
-   541  000120  6EF2               	movwf	4082,c	;volatile
-   542                           
-   543                           ;data_out.c: 68: INTCON2=0x00;
-   544  000122  0E00               	movlw	0
-   545  000124  6EF1               	movwf	4081,c	;volatile
-   546                           
-   547                           ;data_out.c: 69: INTCON3=0x00;
-   548  000126  0E00               	movlw	0
-   549  000128  6EF0               	movwf	4080,c	;volatile
-   550                           
-   551                           ;data_out.c: 70: PIR1=0x00;
-   552  00012A  0E00               	movlw	0
-   553  00012C  6E9E               	movwf	3998,c	;volatile
-   554                           
-   555                           ;data_out.c: 71: PIR2=0x00;
-   556  00012E  0E00               	movlw	0
-   557  000130  6EA1               	movwf	4001,c	;volatile
-   558                           
-   559                           ;data_out.c: 72: PIE1=0x00;
-   560  000132  0E00               	movlw	0
-   561  000134  6E9D               	movwf	3997,c	;volatile
-   562                           
-   563                           ;data_out.c: 73: PIE2=0x00;
-   564  000136  0E00               	movlw	0
-   565  000138  6EA0               	movwf	4000,c	;volatile
-   566                           
-   567                           ;data_out.c: 75: INTCONbits.GIE=1;
-   568  00013A  8EF2               	bsf	4082,7,c	;volatile
-   569                           
-   570                           ;data_out.c: 76: INTCONbits.PEIE=1;
-   571  00013C  8CF2               	bsf	4082,6,c	;volatile
-   572                           
-   573                           ;data_out.c: 77: PIE1bits.TMR1IE=1;
-   574  00013E  809D               	bsf	3997,0,c	;volatile
-   575                           
-   576                           ;data_out.c: 78: PIR1bits.TMR1IF=0;
-   577  000140  909E               	bcf	3998,0,c	;volatile
-   578                           
-   579                           ;data_out.c: 80: RCONbits.IPEN=0;
-   580  000142  9ED0               	bcf	4048,7,c	;volatile
-   581  000144  0012               	return		;funcret
-   582  000146                     __end_of_init_timebase:
-   583                           	opt callstack 0
-   584                           
-   585 ;; *************** function _init_data_out *****************
-   586 ;; Defined at:
-   587 ;;		line 85 in file "data_out.c"
-   588 ;; Parameters:    Size  Location     Type
-   589 ;;  baud_rate       2    5[COMRAM] int 
-   590 ;; Auto vars:     Size  Location     Type
-   591 ;;		None
-   592 ;; Return value:  Size  Location     Type
-   593 ;;                  1    wreg      void 
-   594 ;; Registers used:
-   595 ;;		wreg, status,2, status,0
-   596 ;; Tracked objects:
-   597 ;;		On entry : 0/0
-   598 ;;		On exit  : 0/0
-   599 ;;		Unchanged: 0/0
-   600 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   490 ;;Total ram usage:        0 bytes
+   491 ;; Hardware stack levels used:    1
+   492 ;; Hardware stack levels required when called:    4
+   493 ;; This function calls:
+   494 ;;		Nothing
+   495 ;; This function is called by:
+   496 ;;		_config
+   497 ;; This function uses a non-reentrant model
+   498 ;;
+   499                           
+   500                           	psect	text3
+   501  000184                     __ptext3:
+   502                           	opt callstack 0
+   503  000184                     _init_timebase:
+   504                           	opt callstack 25
+   505                           
+   506                           ;data_out.c: 91: TMR1L=0;
+   507                           
+   508                           ;incstack = 0
+   509  000184  0E00               	movlw	0
+   510  000186  6ECE               	movwf	4046,c	;volatile
+   511                           
+   512                           ;data_out.c: 92: TMR1H=61;
+   513  000188  0E3D               	movlw	61
+   514  00018A  6ECF               	movwf	4047,c	;volatile
+   515                           
+   516                           ;data_out.c: 93: T1CONbits.RD16=0;
+   517  00018C  92CD               	bcf	4045,1,c	;volatile
+   518                           
+   519                           ;data_out.c: 94: T1CONbits.T1CKPS1=1;
+   520  00018E  8ACD               	bsf	4045,5,c	;volatile
+   521                           
+   522                           ;data_out.c: 95: T1CONbits.T1CKPS0=1;
+   523  000190  88CD               	bsf	4045,4,c	;volatile
+   524                           
+   525                           ;data_out.c: 96: T1CONbits.TMR1CS=0;
+   526  000192  0E3F               	movlw	-193
+   527  000194  16CD               	andwf	4045,f,c	;volatile
+   528                           
+   529                           ;data_out.c: 97: T1CONbits.T1OSCEN=0;
+   530  000196  96CD               	bcf	4045,3,c	;volatile
+   531                           
+   532                           ;data_out.c: 98: T1CONbits.TMR1ON=0;
+   533  000198  90CD               	bcf	4045,0,c	;volatile
+   534                           
+   535                           ;data_out.c: 99: T1CONbits.TMR1ON=1;
+   536  00019A  80CD               	bsf	4045,0,c	;volatile
+   537                           
+   538                           ;data_out.c: 103: INTCON=0x00;
+   539  00019C  0E00               	movlw	0
+   540  00019E  6EF2               	movwf	4082,c	;volatile
+   541                           
+   542                           ;data_out.c: 104: INTCON2=0x00;
+   543  0001A0  0E00               	movlw	0
+   544  0001A2  6EF1               	movwf	4081,c	;volatile
+   545                           
+   546                           ;data_out.c: 105: INTCON3=0x00;
+   547  0001A4  0E00               	movlw	0
+   548  0001A6  6EF0               	movwf	4080,c	;volatile
+   549                           
+   550                           ;data_out.c: 106: PIR1=0x00;
+   551  0001A8  0E00               	movlw	0
+   552  0001AA  6E9E               	movwf	3998,c	;volatile
+   553                           
+   554                           ;data_out.c: 107: PIR2=0x00;
+   555  0001AC  0E00               	movlw	0
+   556  0001AE  6EA1               	movwf	4001,c	;volatile
+   557                           
+   558                           ;data_out.c: 108: PIE1=0x00;
+   559  0001B0  0E00               	movlw	0
+   560  0001B2  6E9D               	movwf	3997,c	;volatile
+   561                           
+   562                           ;data_out.c: 109: PIE2=0x00;
+   563  0001B4  0E00               	movlw	0
+   564  0001B6  6EA0               	movwf	4000,c	;volatile
+   565                           
+   566                           ;data_out.c: 111: INTCONbits.GIE=1;
+   567  0001B8  8EF2               	bsf	4082,7,c	;volatile
+   568                           
+   569                           ;data_out.c: 112: INTCONbits.PEIE=1;
+   570  0001BA  8CF2               	bsf	4082,6,c	;volatile
+   571                           
+   572                           ;data_out.c: 113: PIE1bits.TMR1IE=1;
+   573  0001BC  809D               	bsf	3997,0,c	;volatile
+   574                           
+   575                           ;data_out.c: 114: PIR1bits.TMR1IF=0;
+   576  0001BE  909E               	bcf	3998,0,c	;volatile
+   577                           
+   578                           ;data_out.c: 116: RCONbits.IPEN=0;
+   579  0001C0  9ED0               	bcf	4048,7,c	;volatile
+   580  0001C2  0012               	return		;funcret
+   581  0001C4                     __end_of_init_timebase:
+   582                           	opt callstack 0
+   583                           
+   584 ;; *************** function _init_data_out *****************
+   585 ;; Defined at:
+   586 ;;		line 121 in file "data_out.c"
+   587 ;; Parameters:    Size  Location     Type
+   588 ;;  baud_rate       2    6[COMRAM] int 
+   589 ;; Auto vars:     Size  Location     Type
+   590 ;;		None
+   591 ;; Return value:  Size  Location     Type
+   592 ;;                  1    wreg      void 
+   593 ;; Registers used:
+   594 ;;		wreg, status,2, status,0
+   595 ;; Tracked objects:
+   596 ;;		On entry : 0/0
+   597 ;;		On exit  : 0/0
+   598 ;;		Unchanged: 0/0
+   599 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   601 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+   600 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   602 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   601 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   603 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+   602 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   604 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
+   603 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   605 ;;Total ram usage:        4 bytes
-   606 ;; Hardware stack levels used:    1
-   607 ;; Hardware stack levels required when called:    4
-   608 ;; This function calls:
-   609 ;;		Nothing
-   610 ;; This function is called by:
-   611 ;;		_config
-   612 ;; This function uses a non-reentrant model
-   613 ;;
-   614                           
-   615                           	psect	text4
-   616  000026                     __ptext4:
-   617                           	opt callstack 0
-   618  000026                     _init_data_out:
-   619                           	opt callstack 25
-   620                           
-   621                           ;data_out.c: 88: switch(baud_rate)
-   622                           
-   623                           ;incstack = 0
-   624  000026  D009               	goto	l1145
-   625  000028                     l1135:
-   626                           
-   627                           ;data_out.c: 91: SPBRG1=103;
-   628  000028  0E67               	movlw	103
-   629  00002A  D005               	goto	L3
-   630  00002C                     l1137:
-   631                           
-   632                           ;data_out.c: 94: SPBRG1=207;
-   633  00002C  0ECF               	movlw	207
-   634  00002E  D003               	goto	L3
-   635  000030                     l1139:
-   636                           
-   637                           ;data_out.c: 97: SPBRG1=68;
-   638  000030  0E44               	movlw	68
-   639  000032  D001               	goto	L3
-   640  000034                     l1141:
-   641                           
-   642                           ;data_out.c: 100: SPBRG1=34;
-   643  000034  0E22               	movlw	34
-   644  000036                     L3:
-   645  000036  6EAF               	movwf	4015,c	;volatile
-   646                           
-   647                           ;data_out.c: 101: break;
-   648  000038  D025               	goto	l175
-   649  00003A                     l1145:
-   650  00003A  C01B  F01D         	movff	init_data_out@baud_rate,??_init_data_out
-   651  00003E  C01C  F01E         	movff	init_data_out@baud_rate+1,??_init_data_out+1
-   652                           
-   653                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 4 sub-sw
+   604 ;;Total ram usage:        4 bytes
+   605 ;; Hardware stack levels used:    1
+   606 ;; Hardware stack levels required when called:    4
+   607 ;; This function calls:
+   608 ;;		Nothing
+   609 ;; This function is called by:
+   610 ;;		_config
+   611 ;; This function uses a non-reentrant model
+   612 ;;
+   613                           
+   614                           	psect	text4
+   615  0000A4                     __ptext4:
+   616                           	opt callstack 0
+   617  0000A4                     _init_data_out:
+   618                           	opt callstack 25
+   619                           
+   620                           ;data_out.c: 124: switch(baud_rate)
+   621                           
+   622                           ;incstack = 0
+   623  0000A4  D009               	goto	l1186
+   624  0000A6                     l1176:
+   625                           
+   626                           ;data_out.c: 127: SPBRG1=103;
+   627  0000A6  0E67               	movlw	103
+   628  0000A8  D005               	goto	L3
+   629  0000AA                     l1178:
+   630                           
+   631                           ;data_out.c: 130: SPBRG1=207;
+   632  0000AA  0ECF               	movlw	207
+   633  0000AC  D003               	goto	L3
+   634  0000AE                     l1180:
+   635                           
+   636                           ;data_out.c: 133: SPBRG1=68;
+   637  0000AE  0E44               	movlw	68
+   638  0000B0  D001               	goto	L3
+   639  0000B2                     l1182:
+   640                           
+   641                           ;data_out.c: 136: SPBRG1=34;
+   642  0000B2  0E22               	movlw	34
+   643  0000B4                     L3:
+   644  0000B4  6EAF               	movwf	4015,c	;volatile
+   645                           
+   646                           ;data_out.c: 137: break;
+   647  0000B6  D025               	goto	l184
+   648  0000B8                     l1186:
+   649  0000B8  C01D  F01F         	movff	init_data_out@baud_rate,??_init_data_out
+   650  0000BC  C01E  F020         	movff	init_data_out@baud_rate+1,??_init_data_out+1
+   651                           
+   652                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 4 sub-sw
       +                          itches
-   654                           ; Switch size 1, requested type "simple"
-   655                           ; Number of cases is 4, Range of values is 37 to 225
-   656                           ; switch strategies available:
-   657                           ; Name         Instructions Cycles
-   658                           ; simple_byte           13     7 (average)
-   659                           ;	Chosen strategy is simple_byte
-   660  000042  501E               	movf	??_init_data_out+1,w,c
-   661  000044  0A25               	xorlw	37	; case 37
-   662  000046  B4D8               	btfsc	status,2,c
-   663  000048  D00A               	goto	l1329
-   664  00004A  0A6E               	xorlw	110	; case 75
-   665  00004C  B4D8               	btfsc	status,2,c
-   666  00004E  D00C               	goto	l1331
-   667  000050  0A89               	xorlw	137	; case 194
-   668  000052  B4D8               	btfsc	status,2,c
-   669  000054  D00E               	goto	l1333
-   670  000056  0A23               	xorlw	35	; case 225
-   671  000058  B4D8               	btfsc	status,2,c
-   672  00005A  D010               	goto	l1335
-   673  00005C  D013               	goto	l175
-   674  00005E                     l1329:
-   675                           
-   676                           ; Switch size 1, requested type "simple"
-   677                           ; Number of cases is 1, Range of values is 128 to 128
-   678                           ; switch strategies available:
-   679                           ; Name         Instructions Cycles
-   680                           ; simple_byte            4     3 (average)
-   681                           ;	Chosen strategy is simple_byte
-   682  00005E  501D               	movf	??_init_data_out,w,c
-   683  000060  0A80               	xorlw	128	; case 128
-   684  000062  B4D8               	btfsc	status,2,c
-   685  000064  D7E1               	goto	l1135
-   686  000066  D00E               	goto	l175
-   687  000068                     l1331:
-   688                           
-   689                           ; Switch size 1, requested type "simple"
-   690                           ; Number of cases is 1, Range of values is 0 to 0
-   691                           ; switch strategies available:
-   692                           ; Name         Instructions Cycles
-   693                           ; simple_byte            4     3 (average)
-   694                           ;	Chosen strategy is simple_byte
-   695  000068  501D               	movf	??_init_data_out,w,c
-   696  00006A  0A00               	xorlw	0	; case 0
-   697  00006C  B4D8               	btfsc	status,2,c
-   698  00006E  D7DE               	goto	l1137
-   699  000070  D009               	goto	l175
-   700  000072                     l1333:
-   701                           
-   702                           ; Switch size 1, requested type "simple"
-   703                           ; Number of cases is 1, Range of values is 0 to 0
-   704                           ; switch strategies available:
-   705                           ; Name         Instructions Cycles
-   706                           ; simple_byte            4     3 (average)
-   707                           ;	Chosen strategy is simple_byte
-   708  000072  501D               	movf	??_init_data_out,w,c
-   709  000074  0A00               	xorlw	0	; case 0
-   710  000076  B4D8               	btfsc	status,2,c
-   711  000078  D7DD               	goto	l1141
-   712  00007A  D004               	goto	l175
-   713  00007C                     l1335:
-   714                           
-   715                           ; Switch size 1, requested type "simple"
-   716                           ; Number of cases is 1, Range of values is 0 to 0
-   717                           ; switch strategies available:
-   718                           ; Name         Instructions Cycles
-   719                           ; simple_byte            4     3 (average)
-   720                           ;	Chosen strategy is simple_byte
-   721  00007C  501D               	movf	??_init_data_out,w,c
-   722  00007E  0A00               	xorlw	0	; case 0
-   723  000080  B4D8               	btfsc	status,2,c
-   724  000082  D7D6               	goto	l1139
-   725  000084                     l175:
-   726                           
-   727                           ;data_out.c: 104: TXSTA1bits.TX9=0;
-   728  000084  9CAC               	bcf	4012,6,c	;volatile
-   729                           
-   730                           ;data_out.c: 105: TXSTA1bits.TXEN=1;
-   731  000086  8AAC               	bsf	4012,5,c	;volatile
-   732                           
-   733                           ;data_out.c: 106: TXSTA1bits.SYNC=0;
-   734  000088  98AC               	bcf	4012,4,c	;volatile
-   735                           
-   736                           ;data_out.c: 107: TXSTA1bits.BRGH=1;
-   737  00008A  84AC               	bsf	4012,2,c	;volatile
-   738                           
-   739                           ;data_out.c: 110: RCSTA1bits.SPEN=1;
-   740  00008C  8EAB               	bsf	4011,7,c	;volatile
-   741                           
-   742                           ;data_out.c: 111: RCSTA1bits.RX9=0;
-   743  00008E  9CAB               	bcf	4011,6,c	;volatile
-   744                           
-   745                           ;data_out.c: 112: RCSTA1bits.CREN=1;
-   746  000090  88AB               	bsf	4011,4,c	;volatile
-   747                           
-   748                           ;data_out.c: 113: RCSTA1bits.ADDEN=0;
-   749  000092  96AB               	bcf	4011,3,c	;volatile
-   750                           
-   751                           ;data_out.c: 117: PIE1bits.RC1IE=0;
-   752  000094  9A9D               	bcf	3997,5,c	;volatile
-   753  000096  0012               	return		;funcret
-   754  000098                     __end_of_init_data_out:
-   755                           	opt callstack 0
-   756                           
-   757 ;; *************** function _adc_config *****************
-   758 ;; Defined at:
-   759 ;;		line 54 in file "config.c"
-   760 ;; Parameters:    Size  Location     Type
-   761 ;;		None
-   762 ;; Auto vars:     Size  Location     Type
-   763 ;;		None
-   764 ;; Return value:  Size  Location     Type
-   765 ;;                  1    wreg      void 
-   766 ;; Registers used:
-   767 ;;		wreg, status,2
-   768 ;; Tracked objects:
-   769 ;;		On entry : 0/0
-   770 ;;		On exit  : 0/0
-   771 ;;		Unchanged: 0/0
-   772 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   653                           ; Switch size 1, requested type "simple"
+   654                           ; Number of cases is 4, Range of values is 37 to 225
+   655                           ; switch strategies available:
+   656                           ; Name         Instructions Cycles
+   657                           ; simple_byte           13     7 (average)
+   658                           ;	Chosen strategy is simple_byte
+   659  0000C0  5020               	movf	??_init_data_out+1,w,c
+   660  0000C2  0A25               	xorlw	37	; case 37
+   661  0000C4  B4D8               	btfsc	status,2,c
+   662  0000C6  D00A               	goto	l1372
+   663  0000C8  0A6E               	xorlw	110	; case 75
+   664  0000CA  B4D8               	btfsc	status,2,c
+   665  0000CC  D00C               	goto	l1374
+   666  0000CE  0A89               	xorlw	137	; case 194
+   667  0000D0  B4D8               	btfsc	status,2,c
+   668  0000D2  D00E               	goto	l1376
+   669  0000D4  0A23               	xorlw	35	; case 225
+   670  0000D6  B4D8               	btfsc	status,2,c
+   671  0000D8  D010               	goto	l1378
+   672  0000DA  D013               	goto	l184
+   673  0000DC                     l1372:
+   674                           
+   675                           ; Switch size 1, requested type "simple"
+   676                           ; Number of cases is 1, Range of values is 128 to 128
+   677                           ; switch strategies available:
+   678                           ; Name         Instructions Cycles
+   679                           ; simple_byte            4     3 (average)
+   680                           ;	Chosen strategy is simple_byte
+   681  0000DC  501F               	movf	??_init_data_out,w,c
+   682  0000DE  0A80               	xorlw	128	; case 128
+   683  0000E0  B4D8               	btfsc	status,2,c
+   684  0000E2  D7E1               	goto	l1176
+   685  0000E4  D00E               	goto	l184
+   686  0000E6                     l1374:
+   687                           
+   688                           ; Switch size 1, requested type "simple"
+   689                           ; Number of cases is 1, Range of values is 0 to 0
+   690                           ; switch strategies available:
+   691                           ; Name         Instructions Cycles
+   692                           ; simple_byte            4     3 (average)
+   693                           ;	Chosen strategy is simple_byte
+   694  0000E6  501F               	movf	??_init_data_out,w,c
+   695  0000E8  0A00               	xorlw	0	; case 0
+   696  0000EA  B4D8               	btfsc	status,2,c
+   697  0000EC  D7DE               	goto	l1178
+   698  0000EE  D009               	goto	l184
+   699  0000F0                     l1376:
+   700                           
+   701                           ; Switch size 1, requested type "simple"
+   702                           ; Number of cases is 1, Range of values is 0 to 0
+   703                           ; switch strategies available:
+   704                           ; Name         Instructions Cycles
+   705                           ; simple_byte            4     3 (average)
+   706                           ;	Chosen strategy is simple_byte
+   707  0000F0  501F               	movf	??_init_data_out,w,c
+   708  0000F2  0A00               	xorlw	0	; case 0
+   709  0000F4  B4D8               	btfsc	status,2,c
+   710  0000F6  D7DD               	goto	l1182
+   711  0000F8  D004               	goto	l184
+   712  0000FA                     l1378:
+   713                           
+   714                           ; Switch size 1, requested type "simple"
+   715                           ; Number of cases is 1, Range of values is 0 to 0
+   716                           ; switch strategies available:
+   717                           ; Name         Instructions Cycles
+   718                           ; simple_byte            4     3 (average)
+   719                           ;	Chosen strategy is simple_byte
+   720  0000FA  501F               	movf	??_init_data_out,w,c
+   721  0000FC  0A00               	xorlw	0	; case 0
+   722  0000FE  B4D8               	btfsc	status,2,c
+   723  000100  D7D6               	goto	l1180
+   724  000102                     l184:
+   725                           
+   726                           ;data_out.c: 140: TXSTA1bits.TX9=0;
+   727  000102  9CAC               	bcf	4012,6,c	;volatile
+   728                           
+   729                           ;data_out.c: 141: TXSTA1bits.TXEN=1;
+   730  000104  8AAC               	bsf	4012,5,c	;volatile
+   731                           
+   732                           ;data_out.c: 142: TXSTA1bits.SYNC=0;
+   733  000106  98AC               	bcf	4012,4,c	;volatile
+   734                           
+   735                           ;data_out.c: 143: TXSTA1bits.BRGH=1;
+   736  000108  84AC               	bsf	4012,2,c	;volatile
+   737                           
+   738                           ;data_out.c: 146: RCSTA1bits.SPEN=1;
+   739  00010A  8EAB               	bsf	4011,7,c	;volatile
+   740                           
+   741                           ;data_out.c: 147: RCSTA1bits.RX9=0;
+   742  00010C  9CAB               	bcf	4011,6,c	;volatile
+   743                           
+   744                           ;data_out.c: 148: RCSTA1bits.CREN=1;
+   745  00010E  88AB               	bsf	4011,4,c	;volatile
+   746                           
+   747                           ;data_out.c: 149: RCSTA1bits.ADDEN=0;
+   748  000110  96AB               	bcf	4011,3,c	;volatile
+   749                           
+   750                           ;data_out.c: 153: PIE1bits.RC1IE=0;
+   751  000112  9A9D               	bcf	3997,5,c	;volatile
+   752  000114  0012               	return		;funcret
+   753  000116                     __end_of_init_data_out:
+   754                           	opt callstack 0
+   755                           
+   756 ;; *************** function _adc_config *****************
+   757 ;; Defined at:
+   758 ;;		line 54 in file "config.c"
+   759 ;; Parameters:    Size  Location     Type
+   760 ;;		None
+   761 ;; Auto vars:     Size  Location     Type
+   762 ;;		None
+   763 ;; Return value:  Size  Location     Type
+   764 ;;                  1    wreg      void 
+   765 ;; Registers used:
+   766 ;;		wreg, status,2
+   767 ;; Tracked objects:
+   768 ;;		On entry : 0/0
+   769 ;;		On exit  : 0/0
+   770 ;;		Unchanged: 0/0
+   771 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   773 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   772 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   774 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   773 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   775 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   774 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   776 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   775 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   777 ;;Total ram usage:        0 bytes
-   778 ;; Hardware stack levels used:    1
-   779 ;; Hardware stack levels required when called:    4
-   780 ;; This function calls:
-   781 ;;		Nothing
-   782 ;; This function is called by:
-   783 ;;		_main
-   784 ;; This function uses a non-reentrant model
-   785 ;;
-   786                           
-   787                           	psect	text5
-   788  000202                     __ptext5:
-   789                           	opt callstack 0
-   790  000202                     _adc_config:
-   791                           	opt callstack 26
-   792                           
-   793                           ;config.c: 57: TRISAbits.RA0=1;
-   794                           
-   795                           ;incstack = 0
-   796  000202  8092               	bsf	3986,0,c	;volatile
-   797                           
-   798                           ;config.c: 58: ANSELAbits.ANSA0=1;
-   799  000204  010F               	movlb	15	; () banked
-   800  000206  8138               	bsf	56,0,b	;volatile
-   801                           
-   802                           ; BSR set to: 15
-   803                           ;config.c: 59: ADCON1=0b10000000;
-   804  000208  0E80               	movlw	128
-   805  00020A  6EC1               	movwf	4033,c	;volatile
-   806                           
-   807                           ;config.c: 60: ADCON2=0b00111110;
-   808  00020C  0E3E               	movlw	62
-   809  00020E  6EC0               	movwf	4032,c	;volatile
-   810                           
-   811                           ; BSR set to: 15
-   812                           ;config.c: 61: ADCON2bits.ADFM=0;
-   813  000210  9EC0               	bcf	4032,7,c	;volatile
-   814                           
-   815                           ; BSR set to: 15
-   816  000212  0012               	return		;funcret
-   817  000214                     __end_of_adc_config:
-   818                           	opt callstack 0
-   819                           
-   820 ;; *************** function _timer *****************
-   821 ;; Defined at:
-   822 ;;		line 47 in file "main.c"
-   823 ;; Parameters:    Size  Location     Type
-   824 ;;		None
-   825 ;; Auto vars:     Size  Location     Type
-   826 ;;		None
-   827 ;; Return value:  Size  Location     Type
-   828 ;;                  1    wreg      void 
-   829 ;; Registers used:
-   830 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-   831 ;; Tracked objects:
-   832 ;;		On entry : 0/0
-   833 ;;		On exit  : 0/0
-   834 ;;		Unchanged: 0/0
-   835 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   776 ;;Total ram usage:        0 bytes
+   777 ;; Hardware stack levels used:    1
+   778 ;; Hardware stack levels required when called:    4
+   779 ;; This function calls:
+   780 ;;		Nothing
+   781 ;; This function is called by:
+   782 ;;		_main
+   783 ;; This function uses a non-reentrant model
+   784 ;;
+   785                           
+   786                           	psect	text5
+   787  00023E                     __ptext5:
+   788                           	opt callstack 0
+   789  00023E                     _adc_config:
+   790                           	opt callstack 26
+   791                           
+   792                           ;config.c: 57: TRISAbits.RA0=1;
+   793                           
+   794                           ;incstack = 0
+   795  00023E  8092               	bsf	3986,0,c	;volatile
+   796                           
+   797                           ;config.c: 58: ANSELAbits.ANSA0=1;
+   798  000240  010F               	movlb	15	; () banked
+   799  000242  8138               	bsf	56,0,b	;volatile
+   800                           
+   801                           ; BSR set to: 15
+   802                           ;config.c: 59: ADCON1=0b10000000;
+   803  000244  0E80               	movlw	128
+   804  000246  6EC1               	movwf	4033,c	;volatile
+   805                           
+   806                           ;config.c: 60: ADCON2=0b00111110;
+   807  000248  0E3E               	movlw	62
+   808  00024A  6EC0               	movwf	4032,c	;volatile
+   809                           
+   810                           ; BSR set to: 15
+   811                           ;config.c: 61: ADCON2bits.ADFM=0;
+   812  00024C  9EC0               	bcf	4032,7,c	;volatile
+   813                           
+   814                           ; BSR set to: 15
+   815  00024E  0012               	return		;funcret
+   816  000250                     __end_of_adc_config:
+   817                           	opt callstack 0
+   818                           
+   819 ;; *************** function _timer *****************
+   820 ;; Defined at:
+   821 ;;		line 47 in file "main.c"
+   822 ;; Parameters:    Size  Location     Type
+   823 ;;		None
+   824 ;; Auto vars:     Size  Location     Type
+   825 ;;		None
+   826 ;; Return value:  Size  Location     Type
+   827 ;;                  1    wreg      void 
+   828 ;; Registers used:
+   829 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   830 ;; Tracked objects:
+   831 ;;		On entry : 0/0
+   832 ;;		On exit  : 0/0
+   833 ;;		Unchanged: 0/0
+   834 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   836 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   835 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   837 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   836 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   838 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+   837 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   839 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+   838 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   840 ;;Total ram usage:        2 bytes
-   841 ;; Hardware stack levels used:    1
-   842 ;; Hardware stack levels required when called:    3
-   843 ;; This function calls:
-   844 ;;		_timebase_interrupt
-   845 ;; This function is called by:
-   846 ;;		Interrupt level 2
-   847 ;; This function uses a non-reentrant model
-   848 ;;
-   849                           
-   850                           	psect	intcode
-   851  000008                     __pintcode:
-   852                           	opt callstack 0
-   853  000008                     _timer:
-   854                           	opt callstack 25
-   855                           
-   856                           ; BSR set to: 15
-   857                           ;incstack = 0
-   858  000008  8220               	bsf	btemp,1,c	;set compiler interrupt flag (level 2)
-   859  00000A  CFD9 F019          	movff	fsr2l,??_timer
-   860  00000E  CFDA F01A          	movff	fsr2h,??_timer+1
-   861                           
-   862                           ;main.c: 48: timebase_interrupt();
-   863  000012  ECA3  F000         	call	_timebase_interrupt	;wreg free
-   864  000016  C01A  FFDA         	movff	??_timer+1,fsr2h
-   865  00001A  C019  FFD9         	movff	??_timer,fsr2l
-   866  00001E  9220               	bcf	btemp,1,c	;clear compiler interrupt flag (level 2)
-   867  000020  0011               	retfie		f
-   868  000022                     __end_of_timer:
-   869                           	opt callstack 0
-   870                           
-   871 ;; *************** function _timebase_interrupt *****************
-   872 ;; Defined at:
-   873 ;;		line 31 in file "data_out.c"
-   874 ;; Parameters:    Size  Location     Type
-   875 ;;		None
-   876 ;; Auto vars:     Size  Location     Type
-   877 ;;		None
-   878 ;; Return value:  Size  Location     Type
-   879 ;;                  1    wreg      void 
-   880 ;; Registers used:
-   881 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-   882 ;; Tracked objects:
-   883 ;;		On entry : 0/0
-   884 ;;		On exit  : 0/0
-   885 ;;		Unchanged: 0/0
-   886 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   839 ;;Total ram usage:        2 bytes
+   840 ;; Hardware stack levels used:    1
+   841 ;; Hardware stack levels required when called:    3
+   842 ;; This function calls:
+   843 ;;		_timebase_interrupt
+   844 ;; This function is called by:
+   845 ;;		Interrupt level 2
+   846 ;; This function uses a non-reentrant model
+   847 ;;
+   848                           
+   849                           	psect	intcode
+   850  000008                     __pintcode:
+   851                           	opt callstack 0
+   852  000008                     _timer:
+   853                           	opt callstack 25
+   854                           
+   855                           ; BSR set to: 15
+   856                           ;incstack = 0
+   857  000008  8222               	bsf	btemp,1,c	;set compiler interrupt flag (level 2)
+   858  00000A  CFD9 F01B          	movff	fsr2l,??_timer
+   859  00000E  CFDA F01C          	movff	fsr2h,??_timer+1
+   860                           
+   861                           ;main.c: 48: timebase_interrupt();
+   862  000012  EC13  F000         	call	_timebase_interrupt	;wreg free
+   863  000016  C01C  FFDA         	movff	??_timer+1,fsr2h
+   864  00001A  C01B  FFD9         	movff	??_timer,fsr2l
+   865  00001E  9222               	bcf	btemp,1,c	;clear compiler interrupt flag (level 2)
+   866  000020  0011               	retfie		f
+   867  000022                     __end_of_timer:
+   868                           	opt callstack 0
+   869                           
+   870 ;; *************** function _timebase_interrupt *****************
+   871 ;; Defined at:
+   872 ;;		line 39 in file "data_out.c"
+   873 ;; Parameters:    Size  Location     Type
+   874 ;;		None
+   875 ;; Auto vars:     Size  Location     Type
+   876 ;;		None
+   877 ;; Return value:  Size  Location     Type
+   878 ;;                  1    wreg      void 
+   879 ;; Registers used:
+   880 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   881 ;; Tracked objects:
+   882 ;;		On entry : 0/0
+   883 ;;		On exit  : 0/0
+   884 ;;		Unchanged: 0/0
+   885 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   887 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   886 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   888 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   887 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   889 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+   888 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   890 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+   889 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   891 ;;Total ram usage:        1 bytes
-   892 ;; Hardware stack levels used:    1
-   893 ;; Hardware stack levels required when called:    2
-   894 ;; This function calls:
-   895 ;;		_send_data
-   896 ;; This function is called by:
-   897 ;;		_timer
-   898 ;; This function uses a non-reentrant model
-   899 ;;
-   900                           
-   901                           	psect	text7
-   902  000146                     __ptext7:
-   903                           	opt callstack 0
-   904  000146                     _timebase_interrupt:
-   905                           	opt callstack 25
-   906                           
-   907                           ;data_out.c: 32: if(PIR1bits.TMR1IF==1)
-   908                           
-   909                           ;incstack = 0
-   910  000146  A09E               	btfss	3998,0,c	;volatile
-   911  000148  0012               	return	
-   912                           
-   913                           ;data_out.c: 33: {;data_out.c: 34: PIR1bits.TMR1IF=0;
-   914  00014A  909E               	bcf	3998,0,c	;volatile
-   915                           
-   916                           ;data_out.c: 35: T1CONbits.TMR1ON=0;
-   917  00014C  90CD               	bcf	4045,0,c	;volatile
-   918                           
-   919                           ;data_out.c: 36: TMR1L=0;
-   920  00014E  0E00               	movlw	0
-   921  000150  6ECE               	movwf	4046,c	;volatile
-   922                           
-   923                           ;data_out.c: 37: TMR1H=61;
-   924  000152  0E3D               	movlw	61
-   925  000154  6ECF               	movwf	4047,c	;volatile
-   926                           
-   927                           ;data_out.c: 39: if(int_counter==4)
-   928  000156  0E04               	movlw	4
-   929  000158  1815               	xorwf	_int_counter,w,c
-   930  00015A  A4D8               	btfss	status,2,c
-   931  00015C  D010               	goto	i2l1233
+   890 ;;Total ram usage:        2 bytes
+   891 ;; Hardware stack levels used:    1
+   892 ;; Hardware stack levels required when called:    2
+   893 ;; This function calls:
+   894 ;;		_send_data
+   895 ;; This function is called by:
+   896 ;;		_timer
+   897 ;; This function uses a non-reentrant model
+   898 ;;
+   899                           
+   900                           	psect	text7
+   901  000026                     __ptext7:
+   902                           	opt callstack 0
+   903  000026                     _timebase_interrupt:
+   904                           	opt callstack 25
+   905                           
+   906                           ;data_out.c: 40: if(PIR1bits.TMR1IF==1)
+   907                           
+   908                           ;incstack = 0
+   909  000026  A09E               	btfss	3998,0,c	;volatile
+   910  000028  0012               	return	
+   911                           
+   912                           ;data_out.c: 41: {;data_out.c: 42: PIR1bits.TMR1IF=0;
+   913  00002A  909E               	bcf	3998,0,c	;volatile
+   914                           
+   915                           ;data_out.c: 45: if(100 == 100)
+   916  00002C  90CD               	bcf	4045,0,c	;volatile
+   917  00002E  D012               	goto	i2l1244
+   918  000030                     i2l1234:
+   919                           
+   920                           ;data_out.c: 52: TMR1L=0;
+   921  000030  0E00               	movlw	0
+   922  000032  6ECE               	movwf	4046,c	;volatile
+   923                           
+   924                           ;data_out.c: 53: TMR1H=61;
+   925  000034  0E3D               	movlw	61
+   926  000036  6ECF               	movwf	4047,c	;volatile
+   927                           
+   928                           ;data_out.c: 54: counter_max=4;
+   929  000038  0E04               	movlw	4
+   930  00003A  D004               	goto	L4
+   931  00003C                     i2l1236:
    932                           
-   933                           ;data_out.c: 40: {;data_out.c: 41: LATDbits.LATD1=!LATDbits.LATD1;
-   934  00015E  B28C               	btfsc	3980,1,c	;volatile
-   935  000160  D003               	goto	i2u13_40
-   936  000162  6A18               	clrf	??_timebase_interrupt& (0+255),c
-   937  000164  2A18               	incf	??_timebase_interrupt& (0+255),f,c
-   938  000166  D001               	goto	i2u14_48
-   939  000168                     i2u13_40:
-   940  000168  6A18               	clrf	??_timebase_interrupt& (0+255),c
-   941  00016A                     i2u14_48:
-   942  00016A  4618               	rlncf	??_timebase_interrupt,f,c
-   943  00016C  508C               	movf	3980,w,c	;volatile
-   944  00016E  1818               	xorwf	??_timebase_interrupt,w,c
-   945  000170  0BFD               	andlw	-3
-   946  000172  1818               	xorwf	??_timebase_interrupt,w,c
-   947  000174  6E8C               	movwf	3980,c	;volatile
-   948                           
-   949                           ;data_out.c: 42: send_data();
-   950  000176  ECE4  F000         	call	_send_data	;wreg free
-   951                           
-   952                           ;data_out.c: 43: int_counter=0;
-   953  00017A  0E00               	movlw	0
-   954  00017C  6E15               	movwf	_int_counter,c
-   955  00017E                     i2l1233:
-   956                           
-   957                           ;data_out.c: 44: };data_out.c: 46: int_counter++;
-   958  00017E  2A15               	incf	_int_counter,f,c
-   959                           
-   960                           ;data_out.c: 47: T1CONbits.TMR1ON=1;
-   961  000180  80CD               	bsf	4045,0,c	;volatile
-   962  000182  0012               	return		;funcret
-   963  000184                     __end_of_timebase_interrupt:
-   964                           	opt callstack 0
-   965                           
-   966 ;; *************** function _send_data *****************
-   967 ;; Defined at:
-   968 ;;		line 16 in file "data_out.c"
-   969 ;; Parameters:    Size  Location     Type
-   970 ;;		None
-   971 ;; Auto vars:     Size  Location     Type
-   972 ;;  i               1    1[COMRAM] unsigned char 
-   973 ;; Return value:  Size  Location     Type
-   974 ;;                  1    wreg      void 
-   975 ;; Registers used:
-   976 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-   977 ;; Tracked objects:
-   978 ;;		On entry : 0/0
-   979 ;;		On exit  : 0/0
-   980 ;;		Unchanged: 0/0
-   981 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   933                           ;data_out.c: 58: TMR1L=0;
+   934  00003C  0E00               	movlw	0
+   935  00003E  6ECE               	movwf	4046,c	;volatile
+   936                           
+   937                           ;data_out.c: 59: TMR1H=60;
+   938  000040  0E3C               	movlw	60
+   939  000042  D005               	goto	L5
+   940  000044                     L4:
+   941  000044  6E15               	movwf	_counter_max,c
+   942                           
+   943                           ;data_out.c: 61: break;
+   944  000046  D017               	goto	i2l1246
+   945  000048                     i2l1238:
+   946                           
+   947                           ;data_out.c: 64: TMR1L=128;
+   948  000048  0E80               	movlw	128
+   949  00004A  6ECE               	movwf	4046,c	;volatile
+   950                           
+   951                           ;data_out.c: 65: TMR1H=177;
+   952  00004C  0EB1               	movlw	177
+   953  00004E                     L5:
+   954  00004E  6ECF               	movwf	4047,c	;volatile
+   955                           
+   956                           ;data_out.c: 66: counter_max=1;
+   957  000050  0E01               	movlw	1
+   958  000052  D7F8               	goto	L4
+   959  000054                     i2l1244:
+   960  000054  0E64               	movlw	100
+   961  000056  6E19               	movwf	??_timebase_interrupt& (0+255),c
+   962  000058  0E00               	movlw	0
+   963  00005A  6E1A               	movwf	(??_timebase_interrupt+1)& (0+255),c
+   964                           
+   965                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   966                           ; Switch size 1, requested type "simple"
+   967                           ; Number of cases is 1, Range of values is 0 to 0
+   968                           ; switch strategies available:
+   969                           ; Name         Instructions Cycles
+   970                           ; simple_byte            4     3 (average)
+   971                           ;	Chosen strategy is simple_byte
+   972  00005C  501A               	movf	??_timebase_interrupt+1,w,c
+   973  00005E  0A00               	xorlw	0	; case 0
+   974  000060  A4D8               	btfss	status,2,c
+   975  000062  D7E6               	goto	i2l1234
+   976                           
+   977                           ; Switch size 1, requested type "simple"
+   978                           ; Number of cases is 3, Range of values is 10 to 100
+   979                           ; switch strategies available:
+   980                           ; Name         Instructions Cycles
+   981                           ; simple_byte           10     6 (average)
+   982                           ;	Chosen strategy is simple_byte
+   983  000064  5019               	movf	??_timebase_interrupt,w,c
+   984  000066  0A0A               	xorlw	10	; case 10
+   985  000068  B4D8               	btfsc	status,2,c
+   986  00006A  D7EE               	goto	i2l1238
+   987  00006C  0A13               	xorlw	19	; case 25
+   988  00006E  B4D8               	btfsc	status,2,c
+   989  000070  D7E5               	goto	i2l1236
+   990  000072  0A7D               	xorlw	125	; case 100
+   991  000074  D7DD               	goto	i2l1234
+   992  000076                     i2l1246:
+   993                           
+   994                           ;data_out.c: 75: if(int_counter==counter_max)
+   995  000076  5015               	movf	_counter_max,w,c
+   996  000078  1816               	xorwf	_int_counter,w,c
+   997  00007A  A4D8               	btfss	status,2,c
+   998  00007C  D010               	goto	i2l1254
+   999                           
+  1000                           ;data_out.c: 76: {;data_out.c: 77: LATDbits.LATD1=!LATDbits.LATD1;
+  1001  00007E  B28C               	btfsc	3980,1,c	;volatile
+  1002  000080  D003               	goto	i2u13_40
+  1003  000082  6A19               	clrf	??_timebase_interrupt& (0+255),c
+  1004  000084  2A19               	incf	??_timebase_interrupt& (0+255),f,c
+  1005  000086  D001               	goto	i2u14_48
+  1006  000088                     i2u13_40:
+  1007  000088  6A19               	clrf	??_timebase_interrupt& (0+255),c
+  1008  00008A                     i2u14_48:
+  1009  00008A  4619               	rlncf	??_timebase_interrupt,f,c
+  1010  00008C  508C               	movf	3980,w,c	;volatile
+  1011  00008E  1819               	xorwf	??_timebase_interrupt,w,c
+  1012  000090  0BFD               	andlw	-3
+  1013  000092  1819               	xorwf	??_timebase_interrupt,w,c
+  1014  000094  6E8C               	movwf	3980,c	;volatile
+  1015                           
+  1016                           ;data_out.c: 78: send_data();
+  1017  000096  ECF4  F000         	call	_send_data	;wreg free
+  1018                           
+  1019                           ;data_out.c: 79: int_counter=0;
+  1020  00009A  0E00               	movlw	0
+  1021  00009C  6E16               	movwf	_int_counter,c
+  1022  00009E                     i2l1254:
+  1023                           
+  1024                           ;data_out.c: 80: };data_out.c: 82: int_counter++;
+  1025  00009E  2A16               	incf	_int_counter,f,c
+  1026                           
+  1027                           ;data_out.c: 83: T1CONbits.TMR1ON=1;
+  1028  0000A0  80CD               	bsf	4045,0,c	;volatile
+  1029  0000A2  0012               	return		;funcret
+  1030  0000A4                     __end_of_timebase_interrupt:
+  1031                           	opt callstack 0
+  1032                           
+  1033 ;; *************** function _send_data *****************
+  1034 ;; Defined at:
+  1035 ;;		line 24 in file "data_out.c"
+  1036 ;; Parameters:    Size  Location     Type
+  1037 ;;		None
+  1038 ;; Auto vars:     Size  Location     Type
+  1039 ;;  i               1    1[COMRAM] unsigned char 
+  1040 ;; Return value:  Size  Location     Type
+  1041 ;;                  1    wreg      void 
+  1042 ;; Registers used:
+  1043 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1044 ;; Tracked objects:
+  1045 ;;		On entry : 0/0
+  1046 ;;		On exit  : 0/0
+  1047 ;;		Unchanged: 0/0
+  1048 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   982 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+  1049 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   983 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+  1050 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   984 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+  1051 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   985 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+  1052 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   986 ;;Total ram usage:        1 bytes
-   987 ;; Hardware stack levels used:    1
-   988 ;; Hardware stack levels required when called:    1
-   989 ;; This function calls:
-   990 ;;		_write_raw
-   991 ;; This function is called by:
-   992 ;;		_timebase_interrupt
-   993 ;; This function uses a non-reentrant model
-   994 ;;
-   995                           
-   996                           	psect	text8
-   997  0001C8                     __ptext8:
-   998                           	opt callstack 0
-   999  0001C8                     _send_data:
-  1000                           	opt callstack 25
-  1001                           
-  1002                           ;data_out.c: 17: for(char i=0;i<10;i++)
-  1003                           
-  1004                           ;incstack = 0
-  1005  0001C8  0E00               	movlw	0
-  1006  0001CA  6E17               	movwf	send_data@i,c
-  1007  0001CC                     i2l1193:
-  1008                           
-  1009                           ;data_out.c: 18: {;data_out.c: 19: write_raw(out_buffer[i]);
-  1010  0001CC  0E01               	movlw	low _out_buffer
-  1011  0001CE  2417               	addwf	send_data@i,w,c
-  1012  0001D0  6ED9               	movwf	fsr2l,c
-  1013  0001D2  6ADA               	clrf	fsr2h,c
-  1014  0001D4  0E00               	movlw	high _out_buffer
-  1015  0001D6  22DA               	addwfc	fsr2h,f,c
-  1016  0001D8  50DF               	movf	indf2,w,c
-  1017  0001DA  EC0A  F001         	call	_write_raw
-  1018  0001DE  2A17               	incf	send_data@i,f,c
-  1019  0001E0  0E09               	movlw	9
-  1020  0001E2  6417               	cpfsgt	send_data@i,c
-  1021  0001E4  D7F3               	goto	i2l1193
-  1022  0001E6  0012               	return	
-  1023  0001E8                     __end_of_send_data:
-  1024                           	opt callstack 0
-  1025                           
-  1026 ;; *************** function _write_raw *****************
-  1027 ;; Defined at:
-  1028 ;;		line 24 in file "data_out.c"
-  1029 ;; Parameters:    Size  Location     Type
-  1030 ;;  ch              1    wreg     unsigned char 
-  1031 ;; Auto vars:     Size  Location     Type
-  1032 ;;  ch              1    0[COMRAM] unsigned char 
-  1033 ;; Return value:  Size  Location     Type
-  1034 ;;                  1    wreg      void 
-  1035 ;; Registers used:
-  1036 ;;		wreg
-  1037 ;; Tracked objects:
-  1038 ;;		On entry : 0/0
-  1039 ;;		On exit  : 0/0
-  1040 ;;		Unchanged: 0/0
-  1041 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
-      +1  BANK12  BANK13  BANK14  BANK15
-  1042 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
-      +0       0       0       0       0
-  1043 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
-      +0       0       0       0       0
-  1044 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
-      +0       0       0       0       0
-  1045 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
-      +0       0       0       0       0
-  1046 ;;Total ram usage:        1 bytes
-  1047 ;; Hardware stack levels used:    1
-  1048 ;; This function calls:
-  1049 ;;		Nothing
-  1050 ;; This function is called by:
-  1051 ;;		_send_data
-  1052 ;; This function uses a non-reentrant model
-  1053 ;;
-  1054                           
-  1055                           	psect	text9
-  1056  000214                     __ptext9:
-  1057                           	opt callstack 0
-  1058  000214                     _write_raw:
-  1059                           	opt callstack 25
-  1060                           
-  1061                           ;incstack = 0
-  1062                           ;write_raw@ch stored from wreg
-  1063  000214  6E16               	movwf	write_raw@ch,c
-  1064  000216                     
-  1065                           ;data_out.c: 26: while(!PIR1bits.TXIF);
-  1066  000216  A89E               	btfss	3998,4,c	;volatile
-  1067  000218  D7FE               	goto	i2l1129
+  1053 ;;Total ram usage:        1 bytes
+  1054 ;; Hardware stack levels used:    1
+  1055 ;; Hardware stack levels required when called:    1
+  1056 ;; This function calls:
+  1057 ;;		_write_raw
+  1058 ;; This function is called by:
+  1059 ;;		_timebase_interrupt
+  1060 ;; This function uses a non-reentrant model
+  1061 ;;
+  1062                           
+  1063                           	psect	text8
+  1064  0001E8                     __ptext8:
+  1065                           	opt callstack 0
+  1066  0001E8                     _send_data:
+  1067                           	opt callstack 25
   1068                           
-  1069                           ;data_out.c: 27: TXREG=ch;
-  1070  00021A  C016  FFAD         	movff	write_raw@ch,4013	;volatile
-  1071  00021E  0012               	return		;funcret
-  1072  000220                     __end_of_write_raw:
-  1073                           	opt callstack 0
-  1074  0000                     
-  1075                           	psect	rparam
-  1076  0000                     
-  1077                           	psect	temp
-  1078  000020                     btemp:
-  1079                           	opt callstack 0
-  1080  000020                     	ds	1
-  1081  0000                     int$flags	set	btemp
-  1082  0000                     wtemp8	set	btemp+1
-  1083  0000                     ttemp5	set	btemp+1
-  1084  0000                     ttemp6	set	btemp+4
-  1085  0000                     ttemp7	set	btemp+8
-  1086                           tosu	equ	0xFFF
-  1087                           tosh	equ	0xFFE
-  1088                           tosl	equ	0xFFD
-  1089                           stkptr	equ	0xFFC
-  1090                           pclatu	equ	0xFFB
-  1091                           pclath	equ	0xFFA
-  1092                           pcl	equ	0xFF9
-  1093                           tblptru	equ	0xFF8
-  1094                           tblptrh	equ	0xFF7
-  1095                           tblptrl	equ	0xFF6
-  1096                           tablat	equ	0xFF5
-  1097                           prodh	equ	0xFF4
-  1098                           prodl	equ	0xFF3
-  1099                           indf0	equ	0xFEF
-  1100                           postinc0	equ	0xFEE
-  1101                           postdec0	equ	0xFED
-  1102                           preinc0	equ	0xFEC
-  1103                           plusw0	equ	0xFEB
-  1104                           fsr0h	equ	0xFEA
-  1105                           fsr0l	equ	0xFE9
-  1106                           wreg	equ	0xFE8
-  1107                           indf1	equ	0xFE7
-  1108                           postinc1	equ	0xFE6
-  1109                           postdec1	equ	0xFE5
-  1110                           preinc1	equ	0xFE4
-  1111                           plusw1	equ	0xFE3
-  1112                           fsr1h	equ	0xFE2
-  1113                           fsr1l	equ	0xFE1
-  1114                           bsr	equ	0xFE0
-  1115                           indf2	equ	0xFDF
-  1116                           postinc2	equ	0xFDE
-  1117                           postdec2	equ	0xFDD
-  1118                           preinc2	equ	0xFDC
-  1119                           plusw2	equ	0xFDB
-  1120                           fsr2h	equ	0xFDA
-  1121                           fsr2l	equ	0xFD9
-  1122                           status	equ	0xFD8
+  1069                           ;data_out.c: 25: for(char i=0;i<2;i++)
+  1070                           
+  1071                           ;incstack = 0
+  1072  0001E8  0E00               	movlw	0
+  1073  0001EA  6E18               	movwf	send_data@i,c
+  1074  0001EC                     i2l1210:
+  1075                           
+  1076                           ;data_out.c: 26: {;data_out.c: 27: write_raw(out_buffer[i]);
+  1077  0001EC  0E01               	movlw	low _out_buffer
+  1078  0001EE  2418               	addwf	send_data@i,w,c
+  1079  0001F0  6ED9               	movwf	fsr2l,c
+  1080  0001F2  6ADA               	clrf	fsr2h,c
+  1081  0001F4  0E00               	movlw	high _out_buffer
+  1082  0001F6  22DA               	addwfc	fsr2h,f,c
+  1083  0001F8  50DF               	movf	indf2,w,c
+  1084  0001FA  EC28  F001         	call	_write_raw
+  1085  0001FE  2A18               	incf	send_data@i,f,c
+  1086  000200  0E01               	movlw	1
+  1087  000202  6418               	cpfsgt	send_data@i,c
+  1088  000204  D7F3               	goto	i2l1210
+  1089  000206  0012               	return	
+  1090  000208                     __end_of_send_data:
+  1091                           	opt callstack 0
+  1092                           
+  1093 ;; *************** function _write_raw *****************
+  1094 ;; Defined at:
+  1095 ;;		line 32 in file "data_out.c"
+  1096 ;; Parameters:    Size  Location     Type
+  1097 ;;  ch              1    wreg     unsigned char 
+  1098 ;; Auto vars:     Size  Location     Type
+  1099 ;;  ch              1    0[COMRAM] unsigned char 
+  1100 ;; Return value:  Size  Location     Type
+  1101 ;;                  1    wreg      void 
+  1102 ;; Registers used:
+  1103 ;;		wreg
+  1104 ;; Tracked objects:
+  1105 ;;		On entry : 0/0
+  1106 ;;		On exit  : 0/0
+  1107 ;;		Unchanged: 0/0
+  1108 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1109 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1110 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1111 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1112 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1113 ;;Total ram usage:        1 bytes
+  1114 ;; Hardware stack levels used:    1
+  1115 ;; This function calls:
+  1116 ;;		Nothing
+  1117 ;; This function is called by:
+  1118 ;;		_send_data
+  1119 ;; This function uses a non-reentrant model
+  1120 ;;
+  1121                           
+  1122                           	psect	text9
+  1123  000250                     __ptext9:
+  1124                           	opt callstack 0
+  1125  000250                     _write_raw:
+  1126                           	opt callstack 25
+  1127                           
+  1128                           ;incstack = 0
+  1129                           ;write_raw@ch stored from wreg
+  1130  000250  6E17               	movwf	write_raw@ch,c
+  1131  000252                     
+  1132                           ;data_out.c: 34: while(!PIR1bits.TXIF);
+  1133  000252  A89E               	btfss	3998,4,c	;volatile
+  1134  000254  D7FE               	goto	i2l1170
+  1135                           
+  1136                           ;data_out.c: 35: TXREG=ch;
+  1137  000256  C017  FFAD         	movff	write_raw@ch,4013	;volatile
+  1138  00025A  0012               	return		;funcret
+  1139  00025C                     __end_of_write_raw:
+  1140                           	opt callstack 0
+  1141  0000                     
+  1142                           	psect	rparam
+  1143  0000                     
+  1144                           	psect	temp
+  1145  000022                     btemp:
+  1146                           	opt callstack 0
+  1147  000022                     	ds	1
+  1148  0000                     int$flags	set	btemp
+  1149  0000                     wtemp8	set	btemp+1
+  1150  0000                     ttemp5	set	btemp+1
+  1151  0000                     ttemp6	set	btemp+4
+  1152  0000                     ttemp7	set	btemp+8
+  1153                           tosu	equ	0xFFF
+  1154                           tosh	equ	0xFFE
+  1155                           tosl	equ	0xFFD
+  1156                           stkptr	equ	0xFFC
+  1157                           pclatu	equ	0xFFB
+  1158                           pclath	equ	0xFFA
+  1159                           pcl	equ	0xFF9
+  1160                           tblptru	equ	0xFF8
+  1161                           tblptrh	equ	0xFF7
+  1162                           tblptrl	equ	0xFF6
+  1163                           tablat	equ	0xFF5
+  1164                           prodh	equ	0xFF4
+  1165                           prodl	equ	0xFF3
+  1166                           indf0	equ	0xFEF
+  1167                           postinc0	equ	0xFEE
+  1168                           postdec0	equ	0xFED
+  1169                           preinc0	equ	0xFEC
+  1170                           plusw0	equ	0xFEB
+  1171                           fsr0h	equ	0xFEA
+  1172                           fsr0l	equ	0xFE9
+  1173                           wreg	equ	0xFE8
+  1174                           indf1	equ	0xFE7
+  1175                           postinc1	equ	0xFE6
+  1176                           postdec1	equ	0xFE5
+  1177                           preinc1	equ	0xFE4
+  1178                           plusw1	equ	0xFE3
+  1179                           fsr1h	equ	0xFE2
+  1180                           fsr1l	equ	0xFE1
+  1181                           bsr	equ	0xFE0
+  1182                           indf2	equ	0xFDF
+  1183                           postinc2	equ	0xFDE
+  1184                           postdec2	equ	0xFDD
+  1185                           preinc2	equ	0xFDC
+  1186                           plusw2	equ	0xFDB
+  1187                           fsr2h	equ	0xFDA
+  1188                           fsr2l	equ	0xFD9
+  1189                           status	equ	0xFD8
 
 
 Data Sizes:
     Strings     0
     Constant    0
     Data        0
-    BSS         21
+    BSS         22
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMRAM           94     10      31
+    COMRAM           94     11      33
     BANK0           160      0       0
     BANK1           256      0       0
     BANK2           256      0       0
@@ -1363,7 +1431,7 @@ Call Graph Tables:
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
  (0) _main                                                 1     1      0      98
-                                              9 COMRAM     1     1      0
+                                             10 COMRAM     1     1      0
                          _adc_config
                              _config
                           _read_Uout
@@ -1377,7 +1445,7 @@ Call Graph Tables:
  (2) _init_timebase                                        0     0      0       0
  ---------------------------------------------------------------------------------
  (2) _init_data_out                                        4     2      2      98
-                                              5 COMRAM     4     2      2
+                                              6 COMRAM     4     2      2
  ---------------------------------------------------------------------------------
  (1) _adc_config                                           0     0      0       0
  ---------------------------------------------------------------------------------
@@ -1386,11 +1454,11 @@ Call Graph Tables:
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
  (3) _timer                                                2     2      0      90
-                                              3 COMRAM     2     2      0
+                                              4 COMRAM     2     2      0
                  _timebase_interrupt
  ---------------------------------------------------------------------------------
- (4) _timebase_interrupt                                   1     1      0      90
-                                              2 COMRAM     1     1      0
+ (4) _timebase_interrupt                                   2     2      0      90
+                                              2 COMRAM     2     2      0
                           _send_data
  ---------------------------------------------------------------------------------
  (5) _send_data                                            1     1      0      90
@@ -1452,7 +1520,7 @@ BANK1              100      0       0       7        0.0%
 BITBANK0            A0      0       0       4        0.0%
 BANK0               A0      0       0       5        0.0%
 BITCOMRAM           5E      0       0       0        0.0%
-COMRAM              5E      A      1F       1       33.0%
+COMRAM              5E      B      21       1       35.1%
 BITBANK15           38      0       0      35        0.0%
 BANK15              38      0       0      36        0.0%
 BITSFR_1             0      0       0     200        0.0%
@@ -1461,29 +1529,29 @@ BITSFR               0      0       0     200        0.0%
 SFR                  0      0       0     200        0.0%
 STACK                0      0       0       2        0.0%
 NULL                 0      0       0       0        0.0%
-ABS                  0      0      1F      12        0.0%
-DATA                 0      0      1F       3        0.0%
+ABS                  0      0      21      12        0.0%
+DATA                 0      0      21       3        0.0%
 CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Mon Apr 08 20:58:17 2019
+Symbol Table                                                                                   Tue Apr 09 20:28:03 2019
 
-                         l99 0198                 __CFG_CP0$OFF 000000                 __CFG_CP1$OFF 000000  
+                         l99 01D8                 __CFG_CP0$OFF 000000                 __CFG_CP1$OFF 000000  
                __CFG_CP2$OFF 000000                 __CFG_CP3$OFF 000000                  __CFG_LVP$ON 000000  
-                        l175 0084                 __CFG_CPB$OFF 000000                          u157 01BA  
-                        u167 018A                 __CFG_CPD$OFF 000000                          wreg 000FE8  
-                 _TXSTA1bits 000FAC   __end_of_timebase_interrupt 0184                         l1141 0034  
-                       l1135 0028                         l1137 002C                         l1145 003A  
-                       l1241 01B0                         l1331 0068                         l1139 0030  
-                       l1333 0072                         l1335 007C                         l1329 005E  
+                        l184 0102                 __CFG_CPB$OFF 000000                          u157 021A  
+                        u167 01CA                 __CFG_CPD$OFF 000000                          wreg 000FE8  
+                 _TXSTA1bits 000FAC   __end_of_timebase_interrupt 00A4                         l1180 00AE  
+                       l1182 00B2                         l1176 00A6                         l1178 00AA  
+                       l1186 00B8                         l1266 0210                         l1372 00DC  
+                       l1374 00E6                         l1376 00F0                         l1378 00FA  
                        _LATA 000F89                         _LATB 000F8A                         _LATC 000F8B  
                        _LATD 000F8C                         _LATE 000F8D                         _PIE1 000F9D  
                        _PIE2 000FA0                         _PIR1 000F9E                         _PIR2 000FA1  
-                       _main 01A8                         fsr2h 000FDA                         indf2 000FDF  
-                       fsr2l 000FD9                         btemp 0020                __CFG_BORV$190 000000  
+                       _main 0208                         fsr2h 000FDA                         indf2 000FDF  
+                       fsr2l 000FD9                         btemp 0022                __CFG_BORV$190 000000  
                        start 0022                __CFG_IESO$OFF 000000                 ___param_bank 000000  
-                      ?_main 0016                        _TMR1H 000FCF                        _TMR1L 000FCE  
+                      ?_main 0017                        _TMR1H 000FCF                        _TMR1L 000FCE  
                       _PORTA 000F80                        _PORTB 000F81                        _PORTC 000F82  
                       _PORTD 000F83                        _PORTE 000F84                        _TRISA 000F92  
                       _TRISB 000F93                        _TRISC 000F94                        _TRISD 000F95  
@@ -1493,48 +1561,50 @@ Symbol Table                                                                    
              __CFG_EBTR2$OFF 000000               __CFG_EBTR3$OFF 000000                __CFG_WRTB$OFF 000000  
               __CFG_WRTC$OFF 000000                __CFG_WRTD$OFF 000000               __CFG_EBTRB$OFF 000000  
          __CFG_MCLRE$EXTMCLR 000000                        _timer 0008                        _str_i 000B  
-             __CFG_BOREN$OFF 000000                        ttemp5 0021                        ttemp6 0024  
-                      ttemp7 0028                        status 000FD8                        wtemp8 0021  
-             __CFG_HFOFST$ON 000000              __initialization 01E8                 __end_of_main 01C8  
-                     ??_main 001F                __activetblptr 000002                       _ADCON0 000FC2  
+             __CFG_BOREN$OFF 000000                        ttemp5 0023                        ttemp6 0026  
+                      ttemp7 002A                        status 000FD8                        wtemp8 0023  
+             __CFG_HFOFST$ON 000000              __initialization 0224                 __end_of_main 0224  
+                     ??_main 0021                __activetblptr 000002                       _ADCON0 000FC2  
                      _ADCON1 000FC1                       _ADCON2 000FC0                       _ADRESH 000FC4  
-                     ?_timer 0016                       _ANSELA 000F38                       _ANSELB 000F39  
+                     ?_timer 0017                       _ANSELA 000F38                       _ANSELB 000F39  
                      _ANSELC 000F3A                       _ANSELD 000F3B                       _ANSELE 000F3C  
-                     i2l1129 0216                       i2l1233 017E                       i2l1193 01CC  
-             __CFG_WDTEN$OFF 000000                       _INTCON 000FF2                       _SPBRG1 000FAF  
-     __size_of_init_data_out 0072               __CFG_XINST$OFF 000000                       _config 0098  
-                     clear_0 01EE       __size_of_init_timebase 0040                       tblptru 000FF8  
-                 __accesstop 0060      __end_of__initialization 01F4              __CFG_PBADEN$OFF 000000  
-              ___rparam_used 000001               __pcstackCOMRAM 0016                   _adc_config 0202  
-              __end_of_timer 0022                _init_data_out 0026                      ??_timer 0019  
-            __CFG_PLLCFG$OFF 000000       init_data_out@baud_rate 001B           __size_of_read_Uout 0024  
-              _init_timebase 0106           _timebase_interrupt 0146           __CFG_CCP2MX$PORTC1 000000  
-         __CFG_CCP3MX$PORTB5 000000                      ?_config 0016           __size_of_send_data 0020  
-        ?_timebase_interrupt 0016               ?_init_data_out 001B                      _INTCON2 000FF1  
-                    _INTCON3 000FF0                      i2u13_40 0168                      i2u14_48 016A  
-       ??_timebase_interrupt 0018               ?_init_timebase 0016           __size_of_write_raw 000C  
-            __CFG_PWRTEN$OFF 000000                      __Hparam 0000                      __Lparam 0000  
-                ?_adc_config 0016              __size_of_config 006E              __CFG_STVREN$OFF 000000  
-                    __pcinit 01E8                      __ramtop 1000                      __ptext0 01A8  
-                    __ptext1 0184                      __ptext2 0098                      __ptext3 0106  
-                    __ptext4 0026                      __ptext5 0202                      __ptext7 0146  
-                    __ptext8 01C8                      __ptext9 0214                    _T1CONbits 000FCD  
-          __end_of_read_Uout 01A8                      _rez_adc 0013         end_of_initialization 01F4  
-          __end_of_send_data 01E8                __Lmediumconst 0000                      postinc0 000FEE  
-            ??_init_data_out 001D            __end_of_write_raw 0220                   _out_buffer 0001  
-                  _TRISAbits 000F92          __size_of_adc_config 0012              ??_init_timebase 001B  
-             __end_of_config 0106          start_initialization 01E8                     ??_config 001F  
-                __pbssCOMRAM 0001                    __pintcode 0008                 ??_adc_config 001B  
-           __CFG_PRICLKEN$ON 000000                   send_data@i 0017                    _read_Uout 0184  
-             __size_of_timer 001A           __end_of_adc_config 0214  __size_of_timebase_interrupt 003E  
-                   _LATDbits 000F8C                     _PIE1bits 000F9D                    _send_data 01C8  
-                   _PIR1bits 000F9E                     _RCONbits 000FD0             __CFG_WDTPS$32768 000000  
-                 _ADCON0bits 000FC2                   _ADCON2bits 000FC0                  write_raw@ch 0016  
-                 ?_read_Uout 0016                    _write_raw 0214                   ?_send_data 0016  
+                     i2l1210 01EC                       i2l1170 0252                       i2l1234 0030  
+                     i2l1236 003C                       i2l1244 0054                       i2l1254 009E  
+                     i2l1238 0048                       i2l1246 0076               __CFG_WDTEN$OFF 000000  
+                     _INTCON 000FF2                       _SPBRG1 000FAF       __size_of_init_data_out 0072  
+             __CFG_XINST$OFF 000000                       _config 0116                       clear_0 022A  
+     __size_of_init_timebase 0040                       tblptru 000FF8                   __accesstop 0060  
+    __end_of__initialization 0230              __CFG_PBADEN$OFF 000000                ___rparam_used 000001  
+             __pcstackCOMRAM 0017                   _adc_config 023E                __end_of_timer 0022  
+              _init_data_out 00A4                      ??_timer 001B              __CFG_PLLCFG$OFF 000000  
+     init_data_out@baud_rate 001D           __size_of_read_Uout 0024                _init_timebase 0184  
+         _timebase_interrupt 0026           __CFG_CCP2MX$PORTC1 000000           __CFG_CCP3MX$PORTB5 000000  
+                    ?_config 0017           __size_of_send_data 0020          ?_timebase_interrupt 0017  
+             ?_init_data_out 001D                      _INTCON2 000FF1                      _INTCON3 000FF0  
+                    i2u13_40 0088                      i2u14_48 008A         ??_timebase_interrupt 0019  
+             ?_init_timebase 0017           __size_of_write_raw 000C              __CFG_PWRTEN$OFF 000000  
+                    __Hparam 0000                      __Lparam 0000                  ?_adc_config 0017  
+            __size_of_config 006E              __CFG_STVREN$OFF 000000                      __pcinit 0224  
+                    __ramtop 1000                      __ptext0 0208                      __ptext1 01C4  
+                    __ptext2 0116                      __ptext3 0184                      __ptext4 00A4  
+                    __ptext5 023E                      __ptext7 0026                      __ptext8 01E8  
+                    __ptext9 0250                    _T1CONbits 000FCD            __end_of_read_Uout 01E8  
+                    _rez_adc 0013         end_of_initialization 0230            __end_of_send_data 0208  
+              __Lmediumconst 0000                      postinc0 000FEE              ??_init_data_out 001F  
+          __end_of_write_raw 025C                   _out_buffer 0001                    _TRISAbits 000F92  
+        __size_of_adc_config 0012              ??_init_timebase 001D               __end_of_config 0184  
+        start_initialization 0224                     ??_config 0021                  __pbssCOMRAM 0001  
+                  __pintcode 0008                 ??_adc_config 001D             __CFG_PRICLKEN$ON 000000  
+                 send_data@i 0018                    _read_Uout 01C4               __size_of_timer 001A  
+         __end_of_adc_config 0250  __size_of_timebase_interrupt 007E                     _LATDbits 000F8C  
+                   _PIE1bits 000F9D                    _send_data 01E8                     _PIR1bits 000F9E  
+                   _RCONbits 000FD0             __CFG_WDTPS$32768 000000                   _ADCON0bits 000FC2  
+                 _ADCON2bits 000FC0                  write_raw@ch 0017                   ?_read_Uout 0017  
+                  _write_raw 0250                   ?_send_data 0017                  _counter_max 0015  
                    __Hrparam 0000                     __Lrparam 0000            __CFG_P2BMX$PORTD2 000000  
-      __end_of_init_data_out 0098                   _ANSELAbits 000F38                  _int_counter 0015  
-                 ?_write_raw 0016                __size_of_main 0020        __end_of_init_timebase 0146  
-                   int$flags 0020                  _OSCTUNEbits 000F9B                   _INTCONbits 000FF2  
-                ??_read_Uout 001B                     intlevel2 0000                   _RCSTA1bits 000FAB  
-                ??_send_data 0017                   _OSCCONbits 000FD3            __CFG_T3CMX$PORTC0 000000  
-                ??_write_raw 0016            __CFG_FOSC$INTIO67 000000  
+      __end_of_init_data_out 0116                   _ANSELAbits 000F38                  _int_counter 0016  
+                 ?_write_raw 0017                __size_of_main 001C        __end_of_init_timebase 01C4  
+                   int$flags 0022                  _OSCTUNEbits 000F9B                   _INTCONbits 000FF2  
+                ??_read_Uout 001D                     intlevel2 0000                   _RCSTA1bits 000FAB  
+                ??_send_data 0018                   _OSCCONbits 000FD3            __CFG_T3CMX$PORTC0 000000  
+                ??_write_raw 0017            __CFG_FOSC$INTIO67 000000  

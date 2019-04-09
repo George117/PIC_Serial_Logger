@@ -31,15 +31,15 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 D:\Program Files\Microchip\xc8\v2.05\pic\sources\c90\common\Umul64.c
 [v ___omul __omul `(ul  1 e 4 0 ]
-"16 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
+"24 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
 [v _send_data send_data `(v  1 e 1 0 ]
-"24
+"32
 [v _write_raw write_raw `(v  1 e 1 0 ]
-"31
+"39
 [v _timebase_interrupt timebase_interrupt `(v  1 e 1 0 ]
-"53
+"89
 [v _init_timebase init_timebase `(v  1 e 1 0 ]
-"85
+"121
 [v _init_data_out init_data_out `(v  1 e 1 0 ]
 "23 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\main.c
 [v _main main `(v  1 e 1 0 ]
@@ -277,15 +277,15 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "13611
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
-[s S299 . 1 `uc 1 . 1 0 :1:0 
+[s S298 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_NOT_DONE 1 0 :1:1 
 ]
 "13656
-[s S302 . 1 `uc 1 ADON 1 0 :1:0 
+[s S301 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
-[s S306 . 1 `uc 1 . 1 0 :1:0 
+[s S305 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -293,23 +293,23 @@
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-[s S314 . 1 `uc 1 . 1 0 :1:0 
+[s S313 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[s S317 . 1 `uc 1 . 1 0 :1:0 
+[s S316 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_DONE 1 0 :1:1 
 ]
-[s S320 . 1 `uc 1 . 1 0 :1:0 
+[s S319 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S323 . 1 `uc 1 . 1 0 :1:0 
+[s S322 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S326 . 1 `uc 1 . 1 0 :1:0 
+[s S325 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GODONE 1 0 :1:1 
 ]
-[u S329 . 1 `S299 1 . 1 0 `S302 1 . 1 0 `S306 1 . 1 0 `S314 1 . 1 0 `S317 1 . 1 0 `S320 1 . 1 0 `S323 1 . 1 0 `S326 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES329  1 e 1 @4034 ]
+[u S328 . 1 `S298 1 . 1 0 `S301 1 . 1 0 `S305 1 . 1 0 `S313 1 . 1 0 `S316 1 . 1 0 `S319 1 . 1 0 `S322 1 . 1 0 `S325 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES328  1 e 1 @4034 ]
 "13763
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
 [s S433 . 1 `uc 1 . 1 0 :2:0 
@@ -421,10 +421,12 @@
 ]
 [u S104 . 1 `S82 1 . 1 0 `S91 1 . 1 0 `S100 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES104  1 e 1 @4082 ]
-"12 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
+"19 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
 [v _out_buffer out_buffer `[10]uc  1 e 10 0 ]
-"13
+"20
 [v _int_counter int_counter `uc  1 e 1 0 ]
+"22
+[v _counter_max counter_max `uc  1 e 1 0 ]
 "17 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\main.c
 [v _rez_adc rez_adc `i  1 e 2 0 ]
 "23
@@ -442,16 +444,16 @@
 {
 "51
 } 0
-"53 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
+"89 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
 [v _init_timebase init_timebase `(v  1 e 1 0 ]
 {
-"82
+"118
 } 0
-"85
+"121
 [v _init_data_out init_data_out `(v  1 e 1 0 ]
 {
-[v init_data_out@baud_rate baud_rate `i  1 p 2 5 ]
-"118
+[v init_data_out@baud_rate baud_rate `i  1 p 2 6 ]
+"154
 } 0
 "54 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\config.c
 [v _adc_config adc_config `(v  1 e 1 0 ]
@@ -463,23 +465,23 @@
 {
 "49
 } 0
-"31 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
+"39 D:\Git\PIC_Serial_Logger\PIC18F_Logger.X\data_out.c
 [v _timebase_interrupt timebase_interrupt `(v  1 e 1 0 ]
 {
-"50
-} 0
-"16
-[v _send_data send_data `(v  1 e 1 0 ]
-{
-"17
-[v send_data@i i `uc  1 a 1 1 ]
-"21
+"86
 } 0
 "24
+[v _send_data send_data `(v  1 e 1 0 ]
+{
+"25
+[v send_data@i i `uc  1 a 1 1 ]
+"29
+} 0
+"32
 [v _write_raw write_raw `(v  1 e 1 0 ]
 {
 [v write_raw@ch ch `uc  1 a 1 wreg ]
 [v write_raw@ch ch `uc  1 a 1 wreg ]
 [v write_raw@ch ch `uc  1 a 1 0 ]
-"28
+"36
 } 0

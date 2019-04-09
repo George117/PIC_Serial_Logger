@@ -6746,7 +6746,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;data_out.h: 37: void init_data_out(int baud_rate);
 [; ;data_out.h: 38: void init_timebase(void);
 [; ;data_out.h: 39: void timebase_interrupt(void);
-"12 data_out.c
+"19 data_out.c
 [v _out_buffer `uc ~T0 @X0 -> 10 `i e ]
 [i _out_buffer
 :U ..
@@ -6762,291 +6762,377 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-[; ;data_out.c: 12: char out_buffer[10]={0,0,0,0,0,0,0,0,0,0};
-"13
+[; ;data_out.c: 19: char out_buffer[10]={0,0,0,0,0,0,0,0,0,0};
+"20
 [v _int_counter `uc ~T0 @X0 1 e ]
 [i _int_counter
 -> -> 0 `i `uc
 ]
-[; ;data_out.c: 13: char int_counter=0;
-"16
+[; ;data_out.c: 20: char int_counter=0;
+"22
+[v _counter_max `uc ~T0 @X0 1 e ]
+[i _counter_max
+-> -> 0 `i `uc
+]
+[; ;data_out.c: 22: char counter_max = 0;
+"24
 [v _send_data `(v ~T0 @X0 1 ef ]
 {
-[; ;data_out.c: 16: void send_data(void) {
+[; ;data_out.c: 24: void send_data(void) {
 [e :U _send_data ]
 [f ]
-[; ;data_out.c: 17: for(char i=0;i<10;i++)
-"17
+[; ;data_out.c: 25: for(char i=0;i<2;i++)
+"25
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 10 `i 850  ]
+[e $ < -> _i `i -> 2 `i 850  ]
 [e $U 851  ]
-"18
+"26
 [e :U 850 ]
-[; ;data_out.c: 18: {
+[; ;data_out.c: 26: {
 {
-[; ;data_out.c: 19: write_raw(out_buffer[i]);
-"19
+[; ;data_out.c: 27: write_raw(out_buffer[i]);
+"27
 [e ( _write_raw (1 *U + &U _out_buffer * -> _i `ux -> -> # *U &U _out_buffer `ui `ux ]
-"20
+"28
 }
-"17
+"25
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 10 `i 850  ]
+[e $ < -> _i `i -> 2 `i 850  ]
 [e :U 851 ]
-"20
+"28
 }
-[; ;data_out.c: 20: }
-[; ;data_out.c: 21: }
-"21
+[; ;data_out.c: 28: }
+[; ;data_out.c: 29: }
+"29
 [e :UE 849 ]
 }
-"24
+"32
 [v _write_raw `(v ~T0 @X0 1 ef1`uc ]
-"25
+"33
 {
-[; ;data_out.c: 24: void write_raw(char ch)
-[; ;data_out.c: 25: {
+[; ;data_out.c: 32: void write_raw(char ch)
+[; ;data_out.c: 33: {
 [e :U _write_raw ]
-"24
+"32
 [v _ch `uc ~T0 @X0 1 r1 ]
-"25
+"33
 [f ]
-[; ;data_out.c: 26: while(!PIR1bits.TXIF);
-"26
+[; ;data_out.c: 34: while(!PIR1bits.TXIF);
+"34
 [e $U 854  ]
 [e :U 855 ]
 [e :U 854 ]
 [e $ ! != -> . . _PIR1bits 1 2 `i -> -> -> 0 `i `Vuc `i 855  ]
 [e :U 856 ]
-[; ;data_out.c: 27: TXREG=ch;
-"27
+[; ;data_out.c: 35: TXREG=ch;
+"35
 [e = _TXREG _ch ]
-[; ;data_out.c: 28: }
-"28
+[; ;data_out.c: 36: }
+"36
 [e :UE 853 ]
 }
-"31
+"39
 [v _timebase_interrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;data_out.c: 31: void timebase_interrupt(void){
+[; ;data_out.c: 39: void timebase_interrupt(void){
 [e :U _timebase_interrupt ]
 [f ]
-[; ;data_out.c: 32: if(PIR1bits.TMR1IF==1)
-"32
-[e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 858  ]
-[; ;data_out.c: 33: {
-"33
-{
-[; ;data_out.c: 34: PIR1bits.TMR1IF=0;
-"34
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;data_out.c: 35: T1CONbits.TMR1ON=0;
-"35
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-[; ;data_out.c: 36: TMR1L=0;
-"36
-[e = _TMR1L -> -> 0 `i `uc ]
-[; ;data_out.c: 37: TMR1H=61;
-"37
-[e = _TMR1H -> -> 61 `i `uc ]
-[; ;data_out.c: 39: if(int_counter==4)
-"39
-[e $ ! == -> _int_counter `i -> 4 `i 859  ]
-[; ;data_out.c: 40: {
+[; ;data_out.c: 40: if(PIR1bits.TMR1IF==1)
 "40
-{
-[; ;data_out.c: 41: LATDbits.LATD1=!LATDbits.LATD1;
+[e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 858  ]
+[; ;data_out.c: 41: {
 "41
-[e = . . _LATDbits 0 1 -> -> ! != -> . . _LATDbits 0 1 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;data_out.c: 42: send_data();
+{
+[; ;data_out.c: 42: PIR1bits.TMR1IF=0;
 "42
-[e ( _send_data ..  ]
-[; ;data_out.c: 43: int_counter=0;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;data_out.c: 43: T1CONbits.TMR1ON=0;
 "43
-[e = _int_counter -> -> 0 `i `uc ]
-"44
+[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
+[; ;data_out.c: 45: if(100 == 100)
+"45
+[e $ ! == -> 100 `i -> 100 `i 859  ]
+[; ;data_out.c: 46: {
+"46
+{
+"48
 }
 [e :U 859 ]
-[; ;data_out.c: 44: }
-[; ;data_out.c: 46: int_counter++;
-"46
+[; ;data_out.c: 48: }
+[; ;data_out.c: 50: switch(100){
+"50
+[e $U 861  ]
+{
+[; ;data_out.c: 51: case 100:
+"51
+[e :U 862 ]
+[; ;data_out.c: 52: TMR1L=0;
+"52
+[e = _TMR1L -> -> 0 `i `uc ]
+[; ;data_out.c: 53: TMR1H=61;
+"53
+[e = _TMR1H -> -> 61 `i `uc ]
+[; ;data_out.c: 54: counter_max=4;
+"54
+[e = _counter_max -> -> 4 `i `uc ]
+[; ;data_out.c: 55: break;
+"55
+[e $U 860  ]
+[; ;data_out.c: 57: case 25:
+"57
+[e :U 863 ]
+[; ;data_out.c: 58: TMR1L=0;
+"58
+[e = _TMR1L -> -> 0 `i `uc ]
+[; ;data_out.c: 59: TMR1H=60;
+"59
+[e = _TMR1H -> -> 60 `i `uc ]
+[; ;data_out.c: 60: counter_max=1;
+"60
+[e = _counter_max -> -> 1 `i `uc ]
+[; ;data_out.c: 61: break;
+"61
+[e $U 860  ]
+[; ;data_out.c: 63: case 10:
+"63
+[e :U 864 ]
+[; ;data_out.c: 64: TMR1L=128;
+"64
+[e = _TMR1L -> -> 128 `i `uc ]
+[; ;data_out.c: 65: TMR1H=177;
+"65
+[e = _TMR1H -> -> 177 `i `uc ]
+[; ;data_out.c: 66: counter_max=1;
+"66
+[e = _counter_max -> -> 1 `i `uc ]
+[; ;data_out.c: 67: break;
+"67
+[e $U 860  ]
+[; ;data_out.c: 68: default:
+"68
+[e :U 865 ]
+[; ;data_out.c: 69: TMR1L=0;
+"69
+[e = _TMR1L -> -> 0 `i `uc ]
+[; ;data_out.c: 70: TMR1H=61;
+"70
+[e = _TMR1H -> -> 61 `i `uc ]
+[; ;data_out.c: 71: counter_max=4;
+"71
+[e = _counter_max -> -> 4 `i `uc ]
+[; ;data_out.c: 72: break;
+"72
+[e $U 860  ]
+"73
+}
+[; ;data_out.c: 73: }
+[e $U 860  ]
+"50
+[e :U 861 ]
+[e [\ -> 100 `i , $ -> 100 `i 862
+ , $ -> 25 `i 863
+ , $ -> 10 `i 864
+ 865 ]
+"73
+[e :U 860 ]
+[; ;data_out.c: 75: if(int_counter==counter_max)
+"75
+[e $ ! == -> _int_counter `i -> _counter_max `i 866  ]
+[; ;data_out.c: 76: {
+"76
+{
+[; ;data_out.c: 77: LATDbits.LATD1=!LATDbits.LATD1;
+"77
+[e = . . _LATDbits 0 1 -> -> ! != -> . . _LATDbits 0 1 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;data_out.c: 78: send_data();
+"78
+[e ( _send_data ..  ]
+[; ;data_out.c: 79: int_counter=0;
+"79
+[e = _int_counter -> -> 0 `i `uc ]
+"80
+}
+[e :U 866 ]
+[; ;data_out.c: 80: }
+[; ;data_out.c: 82: int_counter++;
+"82
 [e ++ _int_counter -> -> 1 `i `uc ]
-[; ;data_out.c: 47: T1CONbits.TMR1ON=1;
-"47
+[; ;data_out.c: 83: T1CONbits.TMR1ON=1;
+"83
 [e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-"49
+"85
 }
 [e :U 858 ]
-[; ;data_out.c: 49: }
-[; ;data_out.c: 50: }
-"50
+[; ;data_out.c: 85: }
+[; ;data_out.c: 86: }
+"86
 [e :UE 857 ]
 }
-"53
+"89
 [v _init_timebase `(v ~T0 @X0 1 ef ]
 {
-[; ;data_out.c: 53: void init_timebase(void){
+[; ;data_out.c: 89: void init_timebase(void){
 [e :U _init_timebase ]
 [f ]
-[; ;data_out.c: 55: TMR1L=0;
-"55
+[; ;data_out.c: 91: TMR1L=0;
+"91
 [e = _TMR1L -> -> 0 `i `uc ]
-[; ;data_out.c: 56: TMR1H=61;
-"56
+[; ;data_out.c: 92: TMR1H=61;
+"92
 [e = _TMR1H -> -> 61 `i `uc ]
-[; ;data_out.c: 57: T1CONbits.RD16=0;
-"57
+[; ;data_out.c: 93: T1CONbits.RD16=0;
+"93
 [e = . . _T1CONbits 2 1 -> -> 0 `i `uc ]
-[; ;data_out.c: 58: T1CONbits.T1CKPS1=1;
-"58
+[; ;data_out.c: 94: T1CONbits.T1CKPS1=1;
+"94
 [e = . . _T1CONbits 2 5 -> -> 1 `i `uc ]
-[; ;data_out.c: 59: T1CONbits.T1CKPS0=1;
-"59
+[; ;data_out.c: 95: T1CONbits.T1CKPS0=1;
+"95
 [e = . . _T1CONbits 2 4 -> -> 1 `i `uc ]
-[; ;data_out.c: 60: T1CONbits.TMR1CS=0;
-"60
+[; ;data_out.c: 96: T1CONbits.TMR1CS=0;
+"96
 [e = . . _T1CONbits 1 5 -> -> 0 `i `uc ]
-[; ;data_out.c: 61: T1CONbits.T1OSCEN=0;
-"61
+[; ;data_out.c: 97: T1CONbits.T1OSCEN=0;
+"97
 [e = . . _T1CONbits 2 3 -> -> 0 `i `uc ]
-[; ;data_out.c: 62: T1CONbits.TMR1ON=0;
-"62
+[; ;data_out.c: 98: T1CONbits.TMR1ON=0;
+"98
 [e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-[; ;data_out.c: 63: T1CONbits.TMR1ON=1;
-"63
+[; ;data_out.c: 99: T1CONbits.TMR1ON=1;
+"99
 [e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-[; ;data_out.c: 67: INTCON=0x00;
-"67
+[; ;data_out.c: 103: INTCON=0x00;
+"103
 [e = _INTCON -> -> 0 `i `uc ]
-[; ;data_out.c: 68: INTCON2=0x00;
-"68
+[; ;data_out.c: 104: INTCON2=0x00;
+"104
 [e = _INTCON2 -> -> 0 `i `uc ]
-[; ;data_out.c: 69: INTCON3=0x00;
-"69
+[; ;data_out.c: 105: INTCON3=0x00;
+"105
 [e = _INTCON3 -> -> 0 `i `uc ]
-[; ;data_out.c: 70: PIR1=0x00;
-"70
+[; ;data_out.c: 106: PIR1=0x00;
+"106
 [e = _PIR1 -> -> 0 `i `uc ]
-[; ;data_out.c: 71: PIR2=0x00;
-"71
+[; ;data_out.c: 107: PIR2=0x00;
+"107
 [e = _PIR2 -> -> 0 `i `uc ]
-[; ;data_out.c: 72: PIE1=0x00;
-"72
+[; ;data_out.c: 108: PIE1=0x00;
+"108
 [e = _PIE1 -> -> 0 `i `uc ]
-[; ;data_out.c: 73: PIE2=0x00;
-"73
+[; ;data_out.c: 109: PIE2=0x00;
+"109
 [e = _PIE2 -> -> 0 `i `uc ]
-[; ;data_out.c: 75: INTCONbits.GIE=1;
-"75
+[; ;data_out.c: 111: INTCONbits.GIE=1;
+"111
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;data_out.c: 76: INTCONbits.PEIE=1;
-"76
+[; ;data_out.c: 112: INTCONbits.PEIE=1;
+"112
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;data_out.c: 77: PIE1bits.TMR1IE=1;
-"77
+[; ;data_out.c: 113: PIE1bits.TMR1IE=1;
+"113
 [e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
-[; ;data_out.c: 78: PIR1bits.TMR1IF=0;
-"78
+[; ;data_out.c: 114: PIR1bits.TMR1IF=0;
+"114
 [e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;data_out.c: 80: RCONbits.IPEN=0;
-"80
+[; ;data_out.c: 116: RCONbits.IPEN=0;
+"116
 [e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
-[; ;data_out.c: 82: }
-"82
-[e :UE 860 ]
+[; ;data_out.c: 118: }
+"118
+[e :UE 867 ]
 }
-"85
+"121
 [v _init_data_out `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;data_out.c: 85: void init_data_out(int baud_rate){
+[; ;data_out.c: 121: void init_data_out(int baud_rate){
 [e :U _init_data_out ]
 [v _baud_rate `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;data_out.c: 88: switch(baud_rate)
-"88
-[e $U 863  ]
-[; ;data_out.c: 89: {
-"89
+[; ;data_out.c: 124: switch(baud_rate)
+"124
+[e $U 870  ]
+[; ;data_out.c: 125: {
+"125
 {
-[; ;data_out.c: 90: case 9600:
-"90
-[e :U 864 ]
-[; ;data_out.c: 91: SPBRG1=103;
-"91
+[; ;data_out.c: 126: case 9600:
+"126
+[e :U 871 ]
+[; ;data_out.c: 127: SPBRG1=103;
+"127
 [e = _SPBRG1 -> -> 103 `i `uc ]
-[; ;data_out.c: 92: break;
-"92
-[e $U 862  ]
-[; ;data_out.c: 93: case 19200:
-"93
-[e :U 865 ]
-[; ;data_out.c: 94: SPBRG1=207;
-"94
+[; ;data_out.c: 128: break;
+"128
+[e $U 869  ]
+[; ;data_out.c: 129: case 19200:
+"129
+[e :U 872 ]
+[; ;data_out.c: 130: SPBRG1=207;
+"130
 [e = _SPBRG1 -> -> 207 `i `uc ]
-[; ;data_out.c: 95: break;
-"95
-[e $U 862  ]
-[; ;data_out.c: 96: case 57600:
-"96
-[e :U 866 ]
-[; ;data_out.c: 97: SPBRG1=68;
-"97
+[; ;data_out.c: 131: break;
+"131
+[e $U 869  ]
+[; ;data_out.c: 132: case 57600:
+"132
+[e :U 873 ]
+[; ;data_out.c: 133: SPBRG1=68;
+"133
 [e = _SPBRG1 -> -> 68 `i `uc ]
-[; ;data_out.c: 98: break;
-"98
-[e $U 862  ]
-[; ;data_out.c: 99: case 115200:
-"99
-[e :U 867 ]
-[; ;data_out.c: 100: SPBRG1=34;
-"100
+[; ;data_out.c: 134: break;
+"134
+[e $U 869  ]
+[; ;data_out.c: 135: case 115200:
+"135
+[e :U 874 ]
+[; ;data_out.c: 136: SPBRG1=34;
+"136
 [e = _SPBRG1 -> -> 34 `i `uc ]
-[; ;data_out.c: 101: break;
-"101
-[e $U 862  ]
-"102
+[; ;data_out.c: 137: break;
+"137
+[e $U 869  ]
+"138
 }
-[; ;data_out.c: 102: }
-[e $U 862  ]
-"88
-[e :U 863 ]
-[e [\ _baud_rate , $ -> 9600 `i 864
- , $ -> 19200 `i 865
- , $ -> -> 57600 `l `i 866
- , $ -> -> 115200 `l `i 867
- 862 ]
-"102
-[e :U 862 ]
-[; ;data_out.c: 104: TXSTA1bits.TX9=0;
-"104
+[; ;data_out.c: 138: }
+[e $U 869  ]
+"124
+[e :U 870 ]
+[e [\ _baud_rate , $ -> 9600 `i 871
+ , $ -> 19200 `i 872
+ , $ -> -> 57600 `l `i 873
+ , $ -> -> 115200 `l `i 874
+ 869 ]
+"138
+[e :U 869 ]
+[; ;data_out.c: 140: TXSTA1bits.TX9=0;
+"140
 [e = . . _TXSTA1bits 0 6 -> -> 0 `i `uc ]
-[; ;data_out.c: 105: TXSTA1bits.TXEN=1;
-"105
+[; ;data_out.c: 141: TXSTA1bits.TXEN=1;
+"141
 [e = . . _TXSTA1bits 0 5 -> -> 1 `i `uc ]
-[; ;data_out.c: 106: TXSTA1bits.SYNC=0;
-"106
+[; ;data_out.c: 142: TXSTA1bits.SYNC=0;
+"142
 [e = . . _TXSTA1bits 0 4 -> -> 0 `i `uc ]
-[; ;data_out.c: 107: TXSTA1bits.BRGH=1;
-"107
+[; ;data_out.c: 143: TXSTA1bits.BRGH=1;
+"143
 [e = . . _TXSTA1bits 0 2 -> -> 1 `i `uc ]
-[; ;data_out.c: 110: RCSTA1bits.SPEN=1;
-"110
+[; ;data_out.c: 146: RCSTA1bits.SPEN=1;
+"146
 [e = . . _RCSTA1bits 0 7 -> -> 1 `i `uc ]
-[; ;data_out.c: 111: RCSTA1bits.RX9=0;
-"111
+[; ;data_out.c: 147: RCSTA1bits.RX9=0;
+"147
 [e = . . _RCSTA1bits 0 6 -> -> 0 `i `uc ]
-[; ;data_out.c: 112: RCSTA1bits.CREN=1;
-"112
+[; ;data_out.c: 148: RCSTA1bits.CREN=1;
+"148
 [e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
-[; ;data_out.c: 113: RCSTA1bits.ADDEN=0;
-"113
+[; ;data_out.c: 149: RCSTA1bits.ADDEN=0;
+"149
 [e = . . _RCSTA1bits 0 3 -> -> 0 `i `uc ]
-[; ;data_out.c: 117: PIE1bits.RC1IE=0;
-"117
+[; ;data_out.c: 153: PIE1bits.RC1IE=0;
+"153
 [e = . . _PIE1bits 0 5 -> -> 0 `i `uc ]
-[; ;data_out.c: 118: }
-"118
-[e :UE 861 ]
+[; ;data_out.c: 154: }
+"154
+[e :UE 868 ]
 }
